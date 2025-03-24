@@ -11,17 +11,14 @@
         <h1>Commodum Copia</h1>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Producten</a></li>
-                <li><a href="#">Winkelwagentje</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#" id="product-icon" onclick="toggleProductList()">🛒 Producten</a></li>
+                <li><a href="#" id="cart-icon">🛍️ Winkelwagentje</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <h2>Producten</h2>
-        <div id="product-list" class="product-grid">
+        <div id="product-list" class="product-grid" style="display: none;">
             <div class="product">
                 <img src="https://via.placeholder.com/150" alt="Adther" />
                 <h3>Adther</h3>
@@ -34,7 +31,6 @@
                 <p>Prijs: €3.00</p>
                 <button onclick="addToCart('Product 2', 3.00)">Voeg toe aan winkelwagentje</button>
             </div>
-            <!-- يمكنك إضافة المزيد من المنتجات هنا -->
         </div>
     </main>
 
