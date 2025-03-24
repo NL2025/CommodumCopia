@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Commodum Copia</title>
+</head>
+<body>
+    <header>
+        <h1>Commodum Copia</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Producten</a></li>
+                <li><a href="#">Winkelwagentje</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Producten</h2>
+        <div id="product-list">
+            <div class="product">
+                <h3>Adther</h3>
+                <p>Prijs: €5.00</p>
+                <button onclick="addToCart('Adther', 5.00)">Voeg toe aan winkelwagentje</button>
+            </div>
+            <div class="product">
+                <h3>Product 2</h3>
+                <p>Prijs: €3.00</p>
+                <button onclick="addToCart('Product 2', 3.00)">Voeg toe aan winkelwagentje</button>
+            </div>
+        </div>
+    </main>
+
+    <aside id="cart">
+        <h2>Winkelwagentje</h2>
+        <ul id="cart-items"></ul>
+        <p>Totaal: €<span id="total-price">0.00</span></p>
+    </aside>
+
+    <script src="script.js"></script>
+</body>
+</html>
