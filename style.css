@@ -16,7 +16,7 @@ nav ul {
     list-style-type: none;
     padding: 0;
     display: flex;
-    justify-content: center; /* Centreren van de elementen */
+    justify-content: space-between; /* توزيع العناصر بين اليمين والوسط واليسار */
 }
 
 nav ul li {
