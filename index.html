@@ -65,71 +65,31 @@
         </section>
 
         <div id="product-list" style="display: none;">
-            <div class="tabs">
-                <button onclick="showTab('meat')">Vlees</button>
-                <button onclick="showTab('dairy')">Zuivel</button>
-                <button onclick="showTab('bread')">Brood</button>
-                <button onclick="showTab('vegetables')">Groenten</button>
-                <button onclick="showTab('drinks')">Dranken</button>
-            </div>
-
-            <div id="meat" class="tab-content">
-                <h2>Vlees</h2>
-                <div class="product-grid">
-                    <div class="product">
-                        <img src="https://example.com/meat1.jpg" alt="Vlees Product 1" />
-                        <h3>Vlees Product 1</h3>
-                        <p>Prijs: €10.00</p>
-                        <button onclick="addToCart('Vlees Product 1', 10.00)">Voeg toe aan winkelwagentje</button>
-                    </div>
+            <h2>Producten</h2>
+            <div class="product-grid">
+                <div class="product">
+                    <img src="https://example.com/apple.jpg" alt="Appel" />
+                    <h3>Appel</h3>
+                    <p>Prijs: <span class="discount-price">€0.80</span> <del>€1.00</del></p>
+                    <button onclick="addToCart('Appel', 0.80)">Voeg toe aan winkelwagentje</button>
                 </div>
-            </div>
-
-            <div id="dairy" class="tab-content" style="display: none;">
-                <h2>Zuivel</h2>
-                <div class="product-grid">
-                    <div class="product">
-                        <img src="https://example.com/dairy1.jpg" alt="Melk" />
-                        <h3>Melk</h3>
-                        <p>Prijs: €1.50</p>
-                        <button onclick="addToCart('Melk', 1.50)">Voeg toe aan winkelwagentje</button>
-                    </div>
+                <div class="product">
+                    <img src="https://example.com/banana.jpg" alt="Banaan" />
+                    <h3>Banaan</h3>
+                    <p>Prijs: <span class="discount-price">€0.40</span> <del>€0.50</del></p>
+                    <button onclick="addToCart('Banaan', 0.40)">Voeg toe aan winkelwagentje</button>
                 </div>
-            </div>
-
-            <div id="bread" class="tab-content" style="display: none;">
-                <h2>Brood</h2>
-                <div class="product-grid">
-                    <div class="product">
-                        <img src="https://example.com/bread1.jpg" alt="Brood" />
-                        <h3>Brood</h3>
-                        <p>Prijs: €2.00</p>
-                        <button onclick="addToCart('Brood', 2.00)">Voeg toe aan winkelwagentje</button>
-                    </div>
+                <div class="product">
+                    <img src="https://example.com/orange.jpg" alt="Sinaasappel" />
+                    <h3>Sinaasappel</h3>
+                    <p>Prijs: <span class="discount-price">€0.70</span> <del>€0.80</del></p>
+                    <button onclick="addToCart('Sinaasappel', 0.70)">Voeg toe aan winkelwagentje</button>
                 </div>
-            </div>
-
-            <div id="vegetables" class="tab-content" style="display: none;">
-                <h2>Groenten</h2>
-                <div class="product-grid">
-                    <div class="product">
-                        <img src="https://example.com/vegetable1.jpg" alt="Groente" />
-                        <h3>Groente</h3>
-                        <p>Prijs: €3.00</p>
-                        <button onclick="addToCart('Groente', 3.00)">Voeg toe aan winkelwagentje</button>
-                    </div>
-                </div>
-            </div>
-
-            <div id="drinks" class="tab-content" style="display: none;">
-                <h2>Dranken</h2>
-                <div class="product-grid">
-                    <div class="product">
-                        <img src="https://example.com/drink1.jpg" alt="Drank" />
-                        <h3>Drank</h3>
-                        <p>Prijs: €1.00</p>
-                        <button onclick="addToCart('Drank', 1.00)">Voeg toe aan winkelwagentje</button>
-                    </div>
+                <div class="product">
+                    <img src="https://example.com/grapes.jpg" alt="Druiven" />
+                    <h3>Druiven</h3>
+                    <p>Prijs: <span class="discount-price">€1.00</span> <del>€1.20</del></p>
+                    <button onclick="addToCart('Druiven', 1.00)">Voeg toe aan winkelwagentje</button>
                 </div>
             </div>
         </div>
