@@ -1,36 +1,59 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url('https://example.com/background.jpg'); /* Achtergrondafbeelding */
-    background-size: cover; /* Om de hele scherm te bedekken */
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    background-color: #f9f9f9;
 }
 
 header {
-    background-color: rgba(33, 150, 243, 0.8); /* Donkerblauw met transparantie */
-    color: white;
-    padding: 10px 0;
+    background-color: #fff;
+    padding: 20px;
     text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 nav ul {
     list-style-type: none;
     padding: 0;
     display: flex;
-    justify-content: flex-end; /* Elementen naar rechts uitlijnen */
+    justify-content: space-between; 
 }
 
 nav ul li {
-    margin-left: 15px;
+    padding: 10px 20px;
+}
+
+.welcome {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.welcome h2 {
+    font-size: 24px;
+}
+
+.welcome p {
+    font-size: 16px;
+}
+
+.contact-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #33b5e5;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
 }
 
 .tabs {
+    display: flex;
+    justify-content: center;
     margin: 20px 0;
 }
 
 .tabs button {
     padding: 10px;
-    margin-right: 5px;
+    margin: 0 5px;
     cursor: pointer;
 }
 
@@ -38,13 +61,15 @@ nav ul li {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 20px;
+    padding: 0 20px;
 }
 
 .product {
     border: 1px solid #ccc;
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.9); /* Witte achtergrond met transparantie */
+    background-color: #fff;
     text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .product img {
