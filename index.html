@@ -11,17 +11,56 @@
         <h1>Commodum Copia</h1>
         <nav>
             <ul>
-                <li><a href="#" id="product-icon" onclick="toggleProductList()">Producten</a></li>
-                <li><a href="#" id="cart-icon" onclick="toggleCart()">Winkelwagen 🛒</a></li>
+                <li class="nav-item"><a href="#" id="product-icon" onclick="toggleProductList()">Producten</a></li>
+                <li class="nav-item"><a href="#" id="cart-icon" onclick="toggleCart()">Winkelwagen 🛒</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section class="welcome">
-            <h2>We're Fize</h2>
-            <p>Hier kan u alles vinden wat u nodig heeft!</p>
+            <h2>Welkom bij Commodum Copia</h2>
+            <p>De beste supermarkt voor al uw boodschappen!</p>
+            <img src="https://example.com/supermarket.jpg" alt="Supermarkt" class="supermarket-image" />
+        </section>
+
+        <section class="weekly-offers">
+            <h3>Aanbiedingen van de week</h3>
+            <div class="product-grid">
+                <div class="product">
+                    <img src="https://example.com/apple.jpg" alt="Appel" />
+                    <h3>Appel</h3>
+                    <p>Prijs: <span class="discount-price">€0.80</span> <del>€1.00</del></p>
+                    <button onclick="addToCart('Appel', 0.80)">Voeg toe aan winkelwagentje</button>
+                </div>
+                <div class="product">
+                    <img src="https://example.com/banana.jpg" alt="Banaan" />
+                    <h3>Banaan</h3>
+                    <p>Prijs: <span class="discount-price">€0.40</span> <del>€0.50</del></p>
+                    <button onclick="addToCart('Banaan', 0.40)">Voeg toe aan winkelwagentje</button>
+                </div>
+                <div class="product">
+                    <img src="https://example.com/orange.jpg" alt="Sinaasappel" />
+                    <h3>Sinaasappel</h3>
+                    <p>Prijs: <span class="discount-price">€0.70</span> <del>€0.80</del></p>
+                    <button onclick="addToCart('Sinaasappel', 0.70)">Voeg toe aan winkelwagentje</button>
+                </div>
+                <div class="product">
+                    <img src="https://example.com/grapes.jpg" alt="Druiven" />
+                    <h3>Druiven</h3>
+                    <p>Prijs: <span class="discount-price">€1.00</span> <del>€1.20</del></p>
+                    <button onclick="addToCart('Druiven', 1.00)">Voeg toe aan winkelwagentje</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact">
             <a class="contact-button" href="#">Contacteer ons</a>
+            <div class="social-media">
+                <a href="#"><img src="https://example.com/facebook-icon.png" alt="Facebook" /></a>
+                <a href="#"><img src="https://example.com/twitter-icon.png" alt="Twitter" /></a>
+                <a href="#"><img src="https://example.com/instagram-icon.png" alt="Instagram" /></a>
+            </div>
         </section>
 
         <div id="product-list" style="display: none;">
@@ -42,7 +81,6 @@
                         <p>Prijs: €10.00</p>
                         <button onclick="addToCart('Vlees Product 1', 10.00)">Voeg toe aan winkelwagentje</button>
                     </div>
-                    <!-- Voeg meer vleesproducten hier toe -->
                 </div>
             </div>
 
@@ -55,7 +93,6 @@
                         <p>Prijs: €1.50</p>
                         <button onclick="addToCart('Melk', 1.50)">Voeg toe aan winkelwagentje</button>
                     </div>
-                    <!-- Voeg meer zuivelproducten hier toe -->
                 </div>
             </div>
 
@@ -68,7 +105,6 @@
                         <p>Prijs: €2.00</p>
                         <button onclick="addToCart('Brood', 2.00)">Voeg toe aan winkelwagentje</button>
                     </div>
-                    <!-- Voeg meer broodproducten hier toe -->
                 </div>
             </div>
 
@@ -81,7 +117,6 @@
                         <p>Prijs: €3.00</p>
                         <button onclick="addToCart('Groente', 3.00)">Voeg toe aan winkelwagentje</button>
                     </div>
-                    <!-- Voeg meer groenteproducten hier toe -->
                 </div>
             </div>
 
@@ -94,7 +129,6 @@
                         <p>Prijs: €1.00</p>
                         <button onclick="addToCart('Drank', 1.00)">Voeg toe aan winkelwagentje</button>
                     </div>
-                    <!-- Voeg meer drankproducten hier toe -->
                 </div>
             </div>
         </div>
