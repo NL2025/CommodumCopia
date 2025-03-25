@@ -1,12 +1,13 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #e3f2fd; /* لون أزرق فاتح */
+    background-image: url('https://example.com/background.jpg'); /* Achtergrondafbeelding */
+    background-size: cover; /* Om de hele scherm te bedekken */
     margin: 0;
     padding: 20px;
 }
 
 header {
-    background-color: #2196f3; /* لون أزرق داكن */
+    background-color: rgba(33, 150, 243, 0.8); /* Donkerblauw met transparantie */
     color: white;
     padding: 10px 0;
     text-align: center;
@@ -16,11 +17,21 @@ nav ul {
     list-style-type: none;
     padding: 0;
     display: flex;
-    justify-content: flex-end; /* محاذاة العناصر إلى اليمين */
+    justify-content: flex-end; /* Elementen naar rechts uitlijnen */
 }
 
 nav ul li {
     margin-left: 15px;
+}
+
+.tabs {
+    margin: 20px 0;
+}
+
+.tabs button {
+    padding: 10px;
+    margin-right: 5px;
+    cursor: pointer;
 }
 
 .product-grid {
@@ -32,7 +43,7 @@ nav ul li {
 .product {
     border: 1px solid #ccc;
     padding: 10px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.9); /* Witte achtergrond met transparantie */
     text-align: center;
 }
 
@@ -45,4 +56,8 @@ aside {
     border: 1px solid #ccc;
     padding: 10px;
     background-color: white;
+}
+
+.tab-content {
+    display: none;
 }
