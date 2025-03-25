@@ -30,7 +30,24 @@ function updateCartDisplay() {
 
 function toggleProductList() {
     const productList = document.getElementById('product-list');
-    productList.style.display = productList.style.display === 'none' ? 'grid' : 'none';
+    const cart = document.getElementById('cart');
+    productList.style.display = productList.style.display === 'none' ? 'block' : 'none';
+    cart.style.display = 'none'; // Verberg de winkelwagentje bij het tonen van producten
+}
+
+function toggleCart() {
+    const cart = document.getElementById('cart');
+    const productList = document.getElementById('product-list');
+    cart.style.display = cart.style.display === 'none' ? 'block' : 'none';
+    productList.style.display = 'none'; // Verberg de productlijst bij het tonen van de winkelwagentje
+}
+
+function showTab(tabName) {
+    const tabs = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+        tab.style.display = 'none'; // Verberg alle tabs
+    });
+    document.getElementById(tabName).style.display = 'block'; // Toon de geselecteerde tab
 }
 
 function increaseQuantity(productName) {
