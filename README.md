@@ -1,36 +1,22 @@
 # Commodum Copia
 
-## Projectoverzicht
-**Commodum Copia** is een online supermarkt die verse en biologische producten verkoopt. De website biedt een dynamische weergave van producten, categorieën en bestellingen, met aandacht voor veiligheid en gebruiksvriendelijkheid.
+## Project Overview
+Commodum Copia is an online supermarket selling fresh and organic products. The website includes a dynamic display of products, categories, and orders.
 
-## Bestandsstructuur
-
-- `index.html` – Startpagina met algemene informatie over de supermarkt.
-- `categorieen.html` – Pagina met productcategorieën.
-- `producten.html` – Productenpagina waarin producten dynamisch worden geladen via JSON.
-- `product.html` – Detailpagina van een enkel product, gebaseerd op product ID.
-- `bestelling.html` – Bestelformulier waar klanten hun bestelling kunnen plaatsen.
-- `login.html` – Inlogpagina voor authenticatie.
-- `css/style.css` – Opmaakbestand voor de website.
-- `js/script.js` – JavaScript om producten te laden en te tonen.
-- `data/products.json` – Bevat de productinformatie.
-- `images/` – Map met productafbeeldingen zoals `appels.jpg`, `brood.jpg`, en `fruit.jpg`.
-
-## Functionaliteiten
-
-- Dynamisch laden van productgegevens via JSON.
-- Navigatiestructuur tussen Home, Categorieën, Producten, en Bestellen.
-- Productdetails laden via queryparameter op `product.html`.
-- Visueel aantrekkelijk ontwerp met CSS-styling.
-- Basale loginpagina en bestelformulier.
-- Beveiligings- en privacyregels worden in acht genomen.
+## File Structure
+- `index.html` – Homepage with general information about the supermarket.
+- `categorieen.html` – Category page that links to different product categories.
+- `producten.html` – Product page displaying products dynamically loaded via JSON.
+- `product.html` – A detailed page for each product.
+- `bestelling.html` – Order page where customers can place an order.
+- `login.html` – Login page for authentication.
+- `css/style.css` – Styling for the site.
+- `js/script.js` – JavaScript to load and display products dynamically.
+- `data/products.json` – Contains product data.
+- `images/` – Folder for product images like `appels.jpg` and `brood.jpg`.
 
 ## Live Demo
+You can view the site online via [GitHub Pages](https://nl2025.github.io/CommodumCopia-/).
 
-Bekijk de site online via:  
-[GitHub Pages](https://nl2025.github.io/CommodumCopia-/)
-
-## Auteur
-
-**Stefan**  
-MBO 4 Software Developer – Mei 2025
+## Author
+Stefan – MBO 4 Software Developer, May 2025
