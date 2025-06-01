@@ -19,4 +19,4 @@ Commodum Copia is een online supermarkt voor verse en biologische producten. De 
 De site is live te bekijken via [GitHub Pages](https://nl2025.github.io/CommodumCopia/).
 
 ## Auteur
-Stefan – MBO 4 Software Developer, juni 2025
+S Alnouh – MBO 4 Software Developer, juni 2025
