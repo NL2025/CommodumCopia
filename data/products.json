@@ -4,13 +4,15 @@
     "naam": "Biologische Appels",
     "prijs": "2.99",
     "beschrijving": "Verse appels uit Nederland",
-    "afbeelding": "appels.jpg"
+    "afbeelding": "appels.jpg",
+    "categorie": "fruit"
   },
   {
     "product_id": 2,
     "naam": "Volkoren Brood",
     "prijs": "1.89",
     "beschrijving": "Gezond en voedzaam volkorenbrood",
-    "afbeelding": "brood.jpg"
+    "afbeelding": "brood.jpg",
+    "categorie": "brood"
   }
 ]
