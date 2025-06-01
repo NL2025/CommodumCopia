@@ -36,5 +36,18 @@
     <footer>
         <p>&copy; 2025 Commodum Copia</p>
     </footer>
+    <script>
+    const params = new URLSearchParams(window.location.search);
+    const gekozenProduct = params.get("product");
+    if (gekozenProduct) {
+        const select = document.getElementById("product");
+        for (let i = 0; i < select.options.length; i++) {
+            if (select.options[i].value === gekozenProduct) {
+                select.selectedIndex = i;
+                break;
+            }
+        }
+    }
+</script>
 </body>
 </html>
