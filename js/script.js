@@ -12,6 +12,10 @@ fetch('data/products.json')
                     <p>${product.beschrijving}</p>
                     <strong>€ ${product.prijs}</strong>
                 </a>
+                <br>
+                <a href="bestelling.html?product=${encodeURIComponent(product.naam)}">
+                    <button>Bestellen</button>
+                </a>
             `;
             lijst.appendChild(div);
         });
