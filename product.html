@@ -4,35 +4,6 @@
     <meta charset="UTF-8">
     <title>Product - Commodum Copia</title>
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        main {
-            display: flex;
-            justify-content: center;
-            padding: 30px;
-        }
-        #product-info {
-            max-width: 400px;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        #product-info img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-        #product-info h2 {
-            margin-top: 0;
-            color: #2e7d32;
-        }
-        #product-info p {
-            margin: 10px 0;
-            font-size: 16px;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -41,16 +12,15 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="producten.html">Producten</a></li>
+                <li><a href="bestelling.html">Bestelling</a></li>
             </ul>
         </nav>
     </header>
-
     <main>
         <section id="product-info">
             <!-- Inhoud wordt via JavaScript geladen -->
         </section>
     </main>
-
     <footer>
         <p>&copy; 2025 Commodum Copia</p>
     </footer>
@@ -68,9 +38,11 @@
                     const info = document.getElementById("product-info");
                     info.innerHTML = `
                         <img src="images/${product.afbeelding}" alt="${product.naam}" />
-                        <h2>${product.naam}</h2>
                         <p><strong>Prijs:</strong> €${product.prijs}</p>
                         <p><strong>Beschrijving:</strong> ${product.beschrijving}</p>
+                        <a href="bestelling.html?product=${product.naam}">
+                            <button>Bestellen</button>
+                        </a>
                     `;
                 } else {
                     document.getElementById("product-info").innerHTML = "<p>Product niet gevonden.</p>";
@@ -78,7 +50,6 @@
             })
             .catch(error => {
                 console.error("Fout bij laden van product:", error);
-                document.getElementById("product-info").innerHTML = "<p>Fout bij het laden van het product.</p>";
             });
     </script>
 </body>
