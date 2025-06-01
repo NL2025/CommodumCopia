@@ -1,14 +1,14 @@
-// script.js
+// js/script.js
 
 const params = new URLSearchParams(window.location.search);
-const categorie = params.get("categorie"); // uitlezen van categorie uit de URL
+const categorie = params.get("categorie"); // Lees de categorie uit de URL
 
 fetch('data/products.json')
     .then(response => response.json())
     .then(data => {
         const lijst = document.getElementById('productlijst');
         data.forEach(product => {
-            // Alleen tonen als er geen categorie is of het product in de gekozen categorie zit
+            // Toon alleen producten die bij de gekozen categorie horen of toon alles als geen categorie is gekozen
             if (!categorie || product.categorie === categorie) {
                 const div = document.createElement('div');
                 div.classList.add('product');
