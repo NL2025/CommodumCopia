@@ -1,12 +1,14 @@
+// script.js
+
 const params = new URLSearchParams(window.location.search);
-const categorie = params.get("categorie"); // leest de categorie uit de URL
+const categorie = params.get("categorie"); // uitlezen van categorie uit de URL
 
 fetch('data/products.json')
     .then(response => response.json())
     .then(data => {
         const lijst = document.getElementById('productlijst');
         data.forEach(product => {
-            // controleer of we filteren op categorie
+            // Alleen tonen als er geen categorie is of het product in de gekozen categorie zit
             if (!categorie || product.categorie === categorie) {
                 const div = document.createElement('div');
                 div.classList.add('product');
@@ -16,6 +18,10 @@ fetch('data/products.json')
                         <h3>${product.naam}</h3>
                         <p>${product.beschrijving}</p>
                         <strong>€ ${product.prijs}</strong>
+                    </a>
+                    <br>
+                    <a href="bestelling.html?product=${encodeURIComponent(product.naam)}">
+                        <button>Bestellen</button>
                     </a>
                 `;
                 lijst.appendChild(div);
