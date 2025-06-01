@@ -7,7 +7,7 @@
 </head>
 <body>
     <header>
-        <h1>Productdetails</h1>
+        <h1 id="product-titel">Productdetails</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -16,15 +16,37 @@
         </nav>
     </header>
     <main>
-        <section>
-            <h2>Biologische Appels</h2>
-            <img src="images/appels.jpg" alt="Appels" />
-            <p>Prijs: €2.99</p>
-            <p>Beschrijving: Verse appels uit Nederland</p>
+        <section id="product-info">
+            <!-- Inhoud wordt via JavaScript geladen -->
         </section>
     </main>
     <footer>
         <p>&copy; 2025 Commodum Copia</p>
     </footer>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        fetch("data/products.json")
+            .then(response => response.json())
+            .then(data => {
+                const product = data.find(p => p.product_id == id);
+                if (product) {
+                    document.getElementById("product-titel").textContent = product.naam;
+                    const info = document.getElementById("product-info");
+                    info.innerHTML = `
+                        <img src="images/${product.afbeelding}" alt="${product.naam}" />
+                        <p><strong>Prijs:</strong> €${product.prijs}</p>
+                        <p><strong>Beschrijving:</strong> ${product.beschrijving}</p>
+                    `;
+                } else {
+                    document.getElementById("product-info").innerHTML = "<p>Product niet gevonden.</p>";
+                }
+            })
+            .catch(error => {
+                console.error("Fout bij laden van product:", error);
+            });
+    </script>
 </body>
 </html>
