@@ -2,53 +2,31 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>Bestelling - Commodum Copia</title>
+    <title>Categorieën - Commodum Copia</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
-        <h1>Plaats uw bestelling</h1>
+        <h1>Categorieën</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="producten.html">Producten</a></li>
-                <li><a href="bestelling.html">Bestelling</a></li>
+                <li><a href="categorieen.html">Categorieën</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <form>
-            <label for="naam">Naam:</label><br>
-            <input type="text" id="naam" name="naam"><br><br>
+        <section>
+            <h2>Fruit</h2>
+            <p>Bekijk al onze fruitproducten.</p>
 
-            <label for="adres">Adres:</label><br>
-            <input type="text" id="adres" name="adres"><br><br>
-
-            <label for="product">Product:</label><br>
-            <select id="product" name="product">
-                <option value="Biologische Appels">Biologische Appels</option>
-                <option value="Volkoren Brood">Volkoren Brood</option>
-            </select><br><br>
-
-            <button type="submit">Bestellen</button>
-        </form>
+            <h2>Brood</h2>
+            <p>Ontdek ons assortiment brood en gebak.</p>
+        </section>
     </main>
     <footer>
         <p>&copy; 2025 Commodum Copia</p>
     </footer>
-
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        const gekozenProduct = params.get("product");
-        if (gekozenProduct) {
-            const select = document.getElementById("product");
-            for (let i = 0; i < select.options.length; i++) {
-                if (select.options[i].value === gekozenProduct || select.options[i].text === gekozenProduct) {
-                    select.selectedIndex = i;
-                    break;
-                }
-            }
-        }
-    </script>
 </body>
 </html>
