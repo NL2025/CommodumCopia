@@ -4,23 +4,42 @@
     <meta charset="UTF-8">
     <title>Categorieën - Commodum Copia</title>
     <link rel="stylesheet" href="css/style.css">
+    <script>
+        function checkLogin() {
+            const gebruiker = localStorage.getItem("gebruiker");
+            const loginLink = document.getElementById("login-link");
+            if (gebruiker) {
+                loginLink.textContent = "Uitloggen (" + gebruiker + ")";
+                loginLink.href = "#";
+                loginLink.onclick = function () {
+                    localStorage.removeItem("gebruiker");
+                    location.reload();
+                };
+            } else {
+                loginLink.textContent = "Inloggen";
+                loginLink.href = "login.html";
+            }
+        }
+    </script>
 </head>
-<body>
+<body onload="checkLogin()">
     <header>
         <h1 class="groene-titel">Categorieën</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="producten.html">Producten</a></li>
                 <li><a href="categorieen.html">Categorieën</a></li>
+                <li><a href="producten.html">Producten</a></li>
+                <li><a href="bestelling.html">Bestelling</a></li>
+                <li><a id="login-link" href="login.html">Inloggen</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <section>
-            <h2>Fruit</h2>
+            <h3>Fruit</h3>
             <p>Bekijk al onze fruitproducten.</p>
-            <h2>Brood</h2>
+            <h3>Brood</h3>
             <p>Ontdek ons assortiment brood en gebak.</p>
         </section>
     </main>
