@@ -4,53 +4,44 @@
     <meta charset="UTF-8">
     <title>Product - Commodum Copia</title>
     <link rel="stylesheet" href="css/style.css">
+    <script>
+        function checkLogin() {
+            const gebruiker = localStorage.getItem("gebruiker");
+            const loginLink = document.getElementById("login-link");
+            if (gebruiker) {
+                loginLink.textContent = "Uitloggen (" + gebruiker + ")";
+                loginLink.href = "#";
+                loginLink.onclick = function () {
+                    localStorage.removeItem("gebruiker");
+                    location.reload();
+                };
+            } else {
+                loginLink.textContent = "Inloggen";
+                loginLink.href = "login.html";
+            }
+        }
+    </script>
 </head>
-<body>
+<body onload="checkLogin()">
     <header>
-        <h1 id="product-titel">Productdetails</h1>
+        <h1 class="groene-titel">Product Details</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="producten.html">Producten</a></li>
                 <li><a href="bestelling.html">Bestelling</a></li>
+                <li><a id="login-link" href="login.html">Inloggen</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section id="product-info">
-            <!-- Inhoud wordt via JavaScript geladen -->
+        <section id="productDetail">
+            <!-- JavaScript vult de productdetails in -->
         </section>
     </main>
     <footer>
         <p>&copy; 2025 Commodum Copia</p>
     </footer>
-
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        const id = params.get("id");
-
-        fetch("data/products.json")
-            .then(response => response.json())
-            .then(data => {
-                const product = data.find(p => p.product_id == id);
-                if (product) {
-                    document.getElementById("product-titel").textContent = product.naam;
-                    const info = document.getElementById("product-info");
-                    info.innerHTML = `
-                        <img src="images/${product.afbeelding}" alt="${product.naam}" />
-                        <p><strong>Prijs:</strong> €${product.prijs}</p>
-                        <p><strong>Beschrijving:</strong> ${product.beschrijving}</p>
-                        <a href="bestelling.html?product=${product.naam}">
-                            <button>Bestellen</button>
-                        </a>
-                    `;
-                } else {
-                    document.getElementById("product-info").innerHTML = "<p>Product niet gevonden.</p>";
-                }
-            })
-            .catch(error => {
-                console.error("Fout bij laden van product:", error);
-            });
-    </script>
+    <script src="js/product.js"></script>
 </body>
 </html>
