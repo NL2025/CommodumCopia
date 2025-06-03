@@ -13,6 +13,8 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="categorieen.html">Categorieën</a></li>
                 <li><a href="producten.html">Producten</a></li>
+                <li><a href="bestelling.html">Bestelling</a></li>
+                <li id="auth-link"><a href="login.html">Inloggen</a></li>
             </ul>
         </nav>
     </header>
@@ -25,5 +27,18 @@
         <p>&copy; 2025 Commodum Copia</p>
     </footer>
     <script src="js/script.js"></script>
+    <script>
+        const authLink = document.getElementById("auth-link");
+        const gebruiker = sessionStorage.getItem("gebruiker");
+
+        if (gebruiker) {
+            authLink.innerHTML = `<a href="#" onclick="logout()">Uitloggen (${gebruiker})</a>`;
+        }
+
+        function logout() {
+            sessionStorage.removeItem("gebruiker");
+            window.location.reload();
+        }
+    </script>
 </body>
 </html>
