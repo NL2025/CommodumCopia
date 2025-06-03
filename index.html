@@ -4,8 +4,25 @@
     <meta charset="UTF-8">
     <title>Commodum Copia - Home</title>
     <link rel="stylesheet" href="css/style.css">
+    <script>
+        function checkLogin() {
+            const gebruiker = localStorage.getItem("gebruiker");
+            const loginLink = document.getElementById("login-link");
+            if (gebruiker) {
+                loginLink.textContent = "Uitloggen (" + gebruiker + ")";
+                loginLink.href = "#";
+                loginLink.onclick = function () {
+                    localStorage.removeItem("gebruiker");
+                    location.reload();
+                };
+            } else {
+                loginLink.textContent = "Inloggen";
+                loginLink.href = "login.html";
+            }
+        }
+    </script>
 </head>
-<body>
+<body onload="checkLogin()">
     <header>
         <h1 class="groene-titel">Welkom bij Commodum Copia</h1>
         <nav>
@@ -14,7 +31,7 @@
                 <li><a href="categorieen.html">Categorieën</a></li>
                 <li><a href="producten.html">Producten</a></li>
                 <li><a href="bestelling.html">Bestelling</a></li>
-                <li id="auth-link"><a href="login.html">Inloggen</a></li>
+                <li><a id="login-link" href="login.html">Inloggen</a></li>
             </ul>
         </nav>
     </header>
@@ -26,19 +43,5 @@
     <footer>
         <p>&copy; 2025 Commodum Copia</p>
     </footer>
-
-    <script>
-        const authLink = document.getElementById("auth-link");
-        const gebruiker = sessionStorage.getItem("gebruiker");
-
-        if (gebruiker) {
-            authLink.innerHTML = `<a href="#" onclick="logout()">Uitloggen (${gebruiker})</a>`;
-        }
-
-        function logout() {
-            sessionStorage.removeItem("gebruiker");
-            window.location.reload();
-        }
-    </script>
 </body>
 </html>
