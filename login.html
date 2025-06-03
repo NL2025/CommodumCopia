@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <title>Login - Commodum Copia</title>
     <link rel="stylesheet" href="css/style.css">
+    <script>
+        function inloggen(event) {
+            event.preventDefault();
+            const gebruikersnaam = document.getElementById("username").value;
+            const wachtwoord = document.getElementById("password").value;
+
+            // Dummy validatie
+            if (gebruikersnaam && wachtwoord) {
+                localStorage.setItem("gebruiker", gebruikersnaam);
+                window.location.href = "index.html";
+            } else {
+                alert("Vul een gebruikersnaam en wachtwoord in.");
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -17,12 +32,12 @@
         </nav>
     </header>
     <main>
-        <form onsubmit="login(event)">
+        <form onsubmit="inloggen(event)">
             <label for="username">Gebruikersnaam:</label><br>
-            <input type="text" id="username" name="username" required><br><br>
+            <input type="text" id="username" name="username"><br><br>
 
             <label for="password">Wachtwoord:</label><br>
-            <input type="password" id="password" name="password" required><br><br>
+            <input type="password" id="password" name="password"><br><br>
 
             <button type="submit">Inloggen</button>
         </form>
@@ -30,14 +45,5 @@
     <footer>
         <p>&copy; 2025 Commodum Copia</p>
     </footer>
-
-    <script>
-        function login(e) {
-            e.preventDefault();
-            const gebruiker = document.getElementById('username').value;
-            sessionStorage.setItem('gebruiker', gebruiker);
-            window.location.href = "index.html";
-        }
-    </script>
 </body>
 </html>
