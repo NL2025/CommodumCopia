@@ -1,47 +1,75 @@
+<!-- Bestand: product.html -->
 <!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>Product - Commodum Copia</title>
+    <title>Productdetails - Commodum Copia</title>
     <link rel="stylesheet" href="css/style.css">
-    <script>
-        function checkLogin() {
-            const gebruiker = localStorage.getItem("gebruiker");
-            const loginLink = document.getElementById("login-link");
-            if (gebruiker) {
-                loginLink.textContent = "Uitloggen (" + gebruiker + ")";
-                loginLink.href = "#";
-                loginLink.onclick = function () {
-                    localStorage.removeItem("gebruiker");
-                    location.reload();
-                };
-            } else {
-                loginLink.textContent = "Inloggen";
-                loginLink.href = "login.html";
-            }
-        }
-    </script>
 </head>
-<body onload="checkLogin()">
+<body>
     <header>
-        <h1 class="groene-titel">Product Details</h1>
+        <h1 class="groene-titel">Productdetails</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
+                <li><a href="categorieen.html">Categorieën</a></li>
                 <li><a href="producten.html">Producten</a></li>
                 <li><a href="bestelling.html">Bestelling</a></li>
-                <li><a id="login-link" href="login.html">Inloggen</a></li>
+                <li><a href="login.html">Inloggen</a></li>
+                <li><a href="#" id="winkelwagen-icon">🛒 <span id="cart-count">0</span></a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section id="productDetail">
-            <!-- JavaScript vult de productdetails in -->
+        <section id="product-detail">
+            <!-- Productgegevens worden hier geladen -->
         </section>
     </main>
     <footer>
         <p>&copy; 2025 Commodum Copia</p>
     </footer>
-    <script src="js/product.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const productId = parseInt(params.get("id"));
+
+        fetch("data/products.json")
+            .then(response => response.json())
+            .then(data => {
+                const product = data.find(p => p.product_id === productId);
+                if (!product) return;
+
+                document.getElementById("product-detail").innerHTML = `
+                    <div class="product">
+                        <img src="images/${product.afbeelding}" alt="${product.naam}">
+                        <h3>${product.naam}</h3>
+                        <p>${product.beschrijving}</p>
+                        <strong>€ ${product.prijs}</strong>
+                        <br><br>
+                        <button onclick="toevoegenAanWinkelwagen(${product.product_id})">Voeg toe aan winkelwagen</button>
+                    </div>
+                `;
+            });
+
+        function toevoegenAanWinkelwagen(id) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const index = cart.findIndex(p => p.id === id);
+            if (index !== -1) {
+                cart[index].aantal++;
+            } else {
+                cart.push({ id: id, aantal: 1 });
+            }
+            localStorage.setItem("cart", JSON.stringify(cart));
+            bijwerkenWinkelwagenTeller();
+            alert("Product toegevoegd aan winkelwagen!");
+        }
+
+        function bijwerkenWinkelwagenTeller() {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const totaal = cart.reduce((sum, item) => sum + item.aantal, 0);
+            document.getElementById("cart-count").textContent = totaal;
+        }
+
+        bijwerkenWinkelwagenTeller();
+    </script>
 </body>
 </html>
