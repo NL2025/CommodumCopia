@@ -1,0 +1,96 @@
+<!-- Bestand: winkelwagen.html -->
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Winkelwagen - Commodum Copia</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1 class="groene-titel">Winkelwagen</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="categorieen.html">Categorieën</a></li>
+                <li><a href="producten.html">Producten</a></li>
+                <li><a href="bestelling.html">Bestelling</a></li>
+                <li><a href="login.html">Inloggen</a></li>
+                <li><a href="#" id="winkelwagen-icon">🛒 <span id="cart-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="winkelwagen-inhoud"></section>
+        <button onclick="verzendBestelling()">Bestelling Plaatsen</button>
+    </main>
+    <footer>
+        <p>&copy; 2025 Commodum Copia</p>
+    </footer>
+
+    <script>
+        const productLijst = {};
+
+        fetch("data/products.json")
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(product => productLijst[product.product_id] = product);
+                toonWinkelwagen();
+            });
+
+        function toonWinkelwagen() {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const container = document.getElementById("winkelwagen-inhoud");
+            container.innerHTML = "";
+            let totaal = 0;
+
+            cart.forEach(item => {
+                const product = productLijst[item.id];
+                if (!product) return;
+                const prijs = parseFloat(product.prijs) * item.aantal;
+                totaal += prijs;
+
+                const div = document.createElement("div");
+                div.innerHTML = `
+                    <strong>${product.naam}</strong> - € ${product.prijs} x 
+                    <input type="number" value="${item.aantal}" min="1" onchange="wijzigAantal(${item.id}, this.value)">
+                    = € ${prijs.toFixed(2)}
+                    <button onclick="verwijderProduct(${item.id})">Verwijder</button>
+                    <hr>
+                `;
+                container.appendChild(div);
+            });
+
+            const totaalDiv = document.createElement("div");
+            totaalDiv.innerHTML = `<h3>Totaal: € ${totaal.toFixed(2)}</h3>`;
+            container.appendChild(totaalDiv);
+        }
+
+        function wijzigAantal(id, aantal) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const index = cart.findIndex(p => p.id === id);
+            if (index !== -1) {
+                cart[index].aantal = parseInt(aantal);
+                localStorage.setItem("cart", JSON.stringify(cart));
+                toonWinkelwagen();
+            }
+        }
+
+        function verwijderProduct(id) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart = cart.filter(p => p.id !== id);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            toonWinkelwagen();
+        }
+
+        function verzendBestelling() {
+            alert("Bestelling succesvol verzonden!");
+            localStorage.removeItem("cart");
+            location.reload();
+        }
+
+        document.getElementById("cart-count").textContent =
+            (JSON.parse(localStorage.getItem("cart")) || []).reduce((sum, p) => sum + p.aantal, 0);
+    </script>
+</body>
+</html>
