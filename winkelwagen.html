@@ -13,83 +13,76 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="categorieen.html">Categorieën</a></li>
                 <li><a href="producten.html">Producten</a></li>
+                <li><a href="winkelwagen.html">Winkelwagen</a></li>
                 <li><a href="bestelling.html">Bestelling</a></li>
                 <li><a href="login.html">Inloggen</a></li>
-                <li><a href="#" id="winkelwagen-icon">🛒 <span id="cart-count">0</span></a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section id="winkelwagen-inhoud"></section>
-        <button onclick="verzendBestelling()">Bestelling Plaatsen</button>
+        <section id="winkelwagen-inhoud">
+            <!-- Winkelwagenitems worden hier geladen -->
+        </section>
+        <section id="winkelwagen-totaal">
+            <p><strong>Totaal: € <span id="totaalbedrag">0.00</span></strong></p>
+            <a href="bestelling.html"><button>Bevestig bestelling</button></a>
+        </section>
     </main>
     <footer>
         <p>&copy; 2025 Commodum Copia</p>
     </footer>
-
     <script>
-        const productLijst = {};
-
-        fetch("data/products.json")
+        const productData = {};
+        fetch('data/products.json')
             .then(response => response.json())
             .then(data => {
-                data.forEach(product => productLijst[product.product_id] = product);
+                data.forEach(p => productData[p.product_id] = p);
                 toonWinkelwagen();
             });
 
         function toonWinkelwagen() {
-            const cart = JSON.parse(localStorage.getItem("cart")) || [];
-            const container = document.getElementById("winkelwagen-inhoud");
-            container.innerHTML = "";
+            const inhoud = document.getElementById('winkelwagen-inhoud');
+            const totaalEl = document.getElementById('totaalbedrag');
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
             let totaal = 0;
 
+            inhoud.innerHTML = '';
+
             cart.forEach(item => {
-                const product = productLijst[item.id];
-                if (!product) return;
+                const product = productData[item.id];
                 const prijs = parseFloat(product.prijs) * item.aantal;
                 totaal += prijs;
 
-                const div = document.createElement("div");
+                const div = document.createElement('div');
+                div.classList.add('product');
                 div.innerHTML = `
-                    <strong>${product.naam}</strong> - € ${product.prijs} x 
-                    <input type="number" value="${item.aantal}" min="1" onchange="wijzigAantal(${item.id}, this.value)">
-                    = € ${prijs.toFixed(2)}
-                    <button onclick="verwijderProduct(${item.id})">Verwijder</button>
-                    <hr>
+                    <h3>${product.naam}</h3>
+                    <p>Aantal: <input type="number" min="1" value="${item.aantal}" onchange="updateAantal(${item.id}, this.value)"></p>
+                    <p>Prijs: € ${prijs.toFixed(2)}</p>
+                    <button onclick="verwijderUitWinkelwagen(${item.id})">Verwijder</button>
                 `;
-                container.appendChild(div);
+                inhoud.appendChild(div);
             });
 
-            const totaalDiv = document.createElement("div");
-            totaalDiv.innerHTML = `<h3>Totaal: € ${totaal.toFixed(2)}</h3>`;
-            container.appendChild(totaalDiv);
+            totaalEl.textContent = totaal.toFixed(2);
         }
 
-        function wijzigAantal(id, aantal) {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            const index = cart.findIndex(p => p.id === id);
+        function updateAantal(id, nieuwAantal) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const index = cart.findIndex(item => item.id === id);
             if (index !== -1) {
-                cart[index].aantal = parseInt(aantal);
-                localStorage.setItem("cart", JSON.stringify(cart));
+                cart[index].aantal = parseInt(nieuwAantal);
+                localStorage.setItem('cart', JSON.stringify(cart));
                 toonWinkelwagen();
             }
         }
 
-        function verwijderProduct(id) {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            cart = cart.filter(p => p.id !== id);
-            localStorage.setItem("cart", JSON.stringify(cart));
+        function verwijderUitWinkelwagen(id) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.id !== id);
+            localStorage.setItem('cart', JSON.stringify(cart));
             toonWinkelwagen();
         }
-
-        function verzendBestelling() {
-            alert("Bestelling succesvol verzonden!");
-            localStorage.removeItem("cart");
-            location.reload();
-        }
-
-        document.getElementById("cart-count").textContent =
-            (JSON.parse(localStorage.getItem("cart")) || []).reduce((sum, p) => sum + p.aantal, 0);
     </script>
 </body>
 </html>
