@@ -1,32 +1,35 @@
+<!-- Bestand: product.html -->
 <!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productdetails - Commodum Copia</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
-        <h1 class="groene-titel">Productdetails</h1>
         <nav>
+            <div class="logo">Commodum Copia</div>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="categorieen.html">Categorieën</a></li>
                 <li><a href="producten.html">Producten</a></li>
-                <li><a href="bestelling.html">Bestelling</a></li>
-                <li><a href="login.html">Inloggen</a></li>
-                <li><a href="#" id="winkelwagen-icon">🛒 <span id="cart-count">0</span></a></li>
+                <li><a href="winkelwagen.html">Winkelwagen <span id="cart-count">0</span></a></li>
             </ul>
         </nav>
     </header>
+
     <main>
         <section id="product-detail">
             <!-- Productgegevens worden hier geladen -->
         </section>
     </main>
+
     <footer>
         <p>&copy; 2025 Commodum Copia</p>
     </footer>
+
     <script>
         const params = new URLSearchParams(window.location.search);
         const productId = parseInt(params.get("id"));
@@ -69,6 +72,88 @@
         }
 
         bijwerkenWinkelwagenTeller();
+    </script>
+</body>
+</html>
+
+<!-- Bestand: bestelling.html -->
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bestelling - Commodum Copia</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Commodum Copia</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="producten.html">Producten</a></li>
+                <li><a href="winkelwagen.html">Winkelwagen <span id="cart-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="bestelling">
+            <h1>Bevestig uw bestelling</h1>
+            <div id="bestelling-overzicht">
+                <!-- Samenvatting van de bestelling -->
+            </div>
+            <form id="bestelling-form">
+                <label for="naam">Naam:</label>
+                <input type="text" id="naam" name="naam" required>
+
+                <label for="adres">Adres:</label>
+                <input type="text" id="adres" name="adres" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <button type="submit">Plaats Bestelling</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Commodum Copia</p>
+    </footer>
+
+    <script>
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        if (cart.length === 0) {
+            document.getElementById("bestelling-overzicht").innerHTML = "<p>Uw winkelwagen is leeg.</p>";
+        } else {
+            fetch("data/products.json")
+                .then(response => response.json())
+                .then(data => {
+                    let html = "<ul>";
+                    let totaal = 0;
+                    cart.forEach(item => {
+                        const product = data.find(p => p.product_id === item.id);
+                        if (product) {
+                            const subtotal = product.prijs * item.aantal;
+                            totaal += subtotal;
+                            html += `<li>${product.naam} x ${item.aantal} = € ${subtotal.toFixed(2)}</li>`;
+                        }
+                    });
+                    html += `</ul><p><strong>Totaal: € ${totaal.toFixed(2)}</strong></p>`;
+                    document.getElementById("bestelling-overzicht").innerHTML = html;
+                });
+        }
+
+        document.getElementById("bestelling-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            alert("Bedankt voor uw bestelling!");
+            localStorage.removeItem("cart");
+            window.location.href = "index.html";
+        });
+
+        document.getElementById("cart-count").textContent = cart.reduce((sum, item) => sum + item.aantal, 0);
     </script>
 </body>
 </html>
