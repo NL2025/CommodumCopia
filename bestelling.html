@@ -4,66 +4,61 @@
     <meta charset="UTF-8">
     <title>Bestelling - Commodum Copia</title>
     <link rel="stylesheet" href="css/style.css">
-    <script>
-        function checkLogin() {
-            const gebruiker = localStorage.getItem("gebruiker");
-            const loginLink = document.getElementById("login-link");
-            if (gebruiker) {
-                loginLink.textContent = "Uitloggen (" + gebruiker + ")";
-                loginLink.href = "#";
-                loginLink.onclick = function () {
-                    localStorage.removeItem("gebruiker");
-                    location.reload();
-                };
-            } else {
-                loginLink.textContent = "Inloggen";
-                loginLink.href = "login.html";
-            }
-        }
-
-        function vulProductIn() {
-            const params = new URLSearchParams(window.location.search);
-            const gekozenProduct = params.get("product");
-            if (gekozenProduct) {
-                const select = document.getElementById("product");
-                const optie = document.createElement("option");
-                optie.value = gekozenProduct;
-                optie.textContent = gekozenProduct;
-                optie.selected = true;
-                select.appendChild(optie);
-            }
-        }
-    </script>
 </head>
-<body onload="checkLogin(); vulProductIn();">
+<body>
     <header>
-        <h1 class="groene-titel">Plaats uw bestelling</h1>
+        <h1 class="groene-titel">Bevestig je Bestelling</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
+                <li><a href="categorieen.html">Categorieën</a></li>
                 <li><a href="producten.html">Producten</a></li>
-                <li><a id="login-link" href="login.html">Inloggen</a></li>
+                <li><a href="bestelling.html">Bestelling</a></li>
+                <li><a href="login.html">Inloggen</a></li>
+                <li><a href="winkelwagen.html" id="winkelwagen-icon">🛒 <span id="cart-count">0</span></a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <form>
-            <label for="naam">Naam:</label><br>
-            <input type="text" id="naam" name="naam"><br><br>
-
-            <label for="adres">Adres:</label><br>
-            <input type="text" id="adres" name="adres"><br><br>
-
-            <label for="product">Product:</label><br>
-            <select id="product" name="product">
-                <option value="">Kies een product</option>
-            </select><br><br>
-
-            <button type="submit">Bestellen</button>
-        </form>
+        <section id="bestelling-overzicht">
+            <h2>Jouw Winkelwagen</h2>
+            <ul id="bestelling-lijst"></ul>
+            <p><strong>Totaalbedrag: € <span id="totaal-bedrag">0.00</span></strong></p>
+            <button onclick="bestellingPlaatsen()">Plaats Bestelling</button>
+        </section>
     </main>
     <footer>
         <p>&copy; 2025 Commodum Copia</p>
     </footer>
+    <script>
+        function bijwerkenTotaal() {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            fetch("data/products.json")
+                .then(res => res.json())
+                .then(products => {
+                    let totaal = 0;
+                    const lijst = document.getElementById("bestelling-lijst");
+                    lijst.innerHTML = "";
+                    cart.forEach(item => {
+                        const product = products.find(p => p.product_id === item.id);
+                        if (product) {
+                            const prijs = product.prijs * item.aantal;
+                            totaal += prijs;
+                            lijst.innerHTML += `<li>${item.aantal}x ${product.naam} - € ${prijs.toFixed(2)}</li>`;
+                        }
+                    });
+                    document.getElementById("totaal-bedrag").textContent = totaal.toFixed(2);
+                    document.getElementById("cart-count").textContent = cart.reduce((s, i) => s + i.aantal, 0);
+                });
+        }
+
+        function bestellingPlaatsen() {
+            alert("Bedankt voor je bestelling!");
+            localStorage.removeItem("cart");
+            location.reload();
+        }
+
+        bijwerkenTotaal();
+    </script>
 </body>
 </html>
