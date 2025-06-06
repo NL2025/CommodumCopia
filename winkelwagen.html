@@ -1,89 +1,65 @@
-<!-- Bestand: winkelwagen.html -->
 <!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Winkelwagen - Commodum Copia</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
-        <h1 class="groene-titel">Winkelwagen</h1>
         <nav>
+            <div class="logo">Commodum Copia</div>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="categorieen.html">Categorieën</a></li>
                 <li><a href="producten.html">Producten</a></li>
-                <li><a href="winkelwagen.html">Winkelwagen</a></li>
-                <li><a href="bestelling.html">Bestelling</a></li>
-                <li><a href="login.html">Inloggen</a></li>
+                <li><a href="winkelwagen.html">Winkelwagen <span id="cart-count" class="cart-count">0</span></a></li>
             </ul>
         </nav>
     </header>
+
     <main>
-        <section id="winkelwagen-inhoud">
-            <!-- Winkelwagenitems worden hier geladen -->
-        </section>
-        <section id="winkelwagen-totaal">
-            <p><strong>Totaal: € <span id="totaalbedrag">0.00</span></strong></p>
-            <a href="bestelling.html"><button>Bevestig bestelling</button></a>
+        <section class="winkelwagen">
+            <h1>Uw Winkelwagen</h1>
+            <div id="winkelwagen-items" class="winkelwagen-items">
+                <!-- Winkelwagenitems worden dynamisch geladen via JavaScript -->
+            </div>
+            <div class="winkelwagen-totaal">
+                <p>Totaal: €<span id="totaal-prijs">0.00</span></p>
+                <button id="clear-cart" class="btn secondary-btn">Winkelwagen Leegmaken</button>
+                <button id="betaal-btn" class="btn">Afrekenen</button>
+            </div>
+            <div id="empty-cart-message" class="empty-cart hidden">
+                <p>Uw winkelwagen is leeg.</p>
+                <a href="producten.html" class="btn">Ga Winkelen</a>
+            </div>
         </section>
     </main>
+
     <footer>
-        <p>&copy; 2025 Commodum Copia</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Commodum Copia</h3>
+                <p>Uw bron voor verse lokale producten</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: info@commodumcopia.nl</p>
+                <p>Tel: 020-1234567</p>
+            </div>
+            <div class="footer-section">
+                <h3>Volg Ons</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2024 Commodum Copia. Alle rechten voorbehouden.</p>
     </footer>
-    <script>
-        const productData = {};
-        fetch('data/products.json')
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(p => productData[p.product_id] = p);
-                toonWinkelwagen();
-            });
 
-        function toonWinkelwagen() {
-            const inhoud = document.getElementById('winkelwagen-inhoud');
-            const totaalEl = document.getElementById('totaalbedrag');
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            let totaal = 0;
-
-            inhoud.innerHTML = '';
-
-            cart.forEach(item => {
-                const product = productData[item.id];
-                const prijs = parseFloat(product.prijs) * item.aantal;
-                totaal += prijs;
-
-                const div = document.createElement('div');
-                div.classList.add('product');
-                div.innerHTML = `
-                    <h3>${product.naam}</h3>
-                    <p>Aantal: <input type="number" min="1" value="${item.aantal}" onchange="updateAantal(${item.id}, this.value)"></p>
-                    <p>Prijs: € ${prijs.toFixed(2)}</p>
-                    <button onclick="verwijderUitWinkelwagen(${item.id})">Verwijder</button>
-                `;
-                inhoud.appendChild(div);
-            });
-
-            totaalEl.textContent = totaal.toFixed(2);
-        }
-
-        function updateAantal(id, nieuwAantal) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const index = cart.findIndex(item => item.id === id);
-            if (index !== -1) {
-                cart[index].aantal = parseInt(nieuwAantal);
-                localStorage.setItem('cart', JSON.stringify(cart));
-                toonWinkelwagen();
-            }
-        }
-
-        function verwijderUitWinkelwagen(id) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart = cart.filter(item => item.id !== id);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            toonWinkelwagen();
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
