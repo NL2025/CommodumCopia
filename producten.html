@@ -14,156 +14,19 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="categorieen.html">Categorieën</a></li>
                 <li><a href="producten.html">Producten</a></li>
-                <li><a href="bestelling.html">Bestelling</a></li>
+                <li><a href="winkelwagen.html">Winkelwagen <span id="cart-count">0</span></a></li>
                 <li><a href="login.html">Inloggen</a></li>
-                <li><a href="winkelwagen.html">🛒 <span id="cart-count">0</span></a></li>
             </ul>
         </nav>
     </header>
     <main>
         <section id="productlijst">
-            <!-- Producten worden automatisch geladen -->
+            <!-- Producten worden hieronder automatisch geladen via JavaScript -->
         </section>
     </main>
     <footer>
         <p>&copy; 2025 Commodum Copia</p>
     </footer>
-    <script>
-        function showToast(bericht) {
-            const toast = document.createElement("div");
-            toast.className = "toast";
-            toast.textContent = bericht;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
-        }
-
-        function toevoegenAanWinkelwagen(id) {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            const index = cart.findIndex(p => p.id === id);
-            if (index !== -1) {
-                cart[index].aantal++;
-            } else {
-                cart.push({ id: id, aantal: 1 });
-            }
-            localStorage.setItem("cart", JSON.stringify(cart));
-            bijwerkenWinkelwagenTeller();
-            showToast("Product toegevoegd aan winkelwagen!");
-        }
-
-        function bijwerkenWinkelwagenTeller() {
-            const cart = JSON.parse(localStorage.getItem("cart")) || [];
-            const totaal = cart.reduce((sum, item) => sum + item.aantal, 0);
-            document.getElementById("cart-count").textContent = totaal;
-        }
-
-        fetch("data/products.json")
-            .then(response => response.json())
-            .then(data => {
-                const lijst = document.getElementById("productlijst");
-                data.forEach(product => {
-                    const div = document.createElement("div");
-                    div.classList.add("product");
-                    div.innerHTML = `
-                        <img src="images/${product.afbeelding}" alt="${product.naam}">
-                        <h3>${product.naam}</h3>
-                        <p>${product.beschrijving}</p>
-                        <strong>€ ${product.prijs}</strong>
-                        <br><br>
-                        <button onclick="toevoegenAanWinkelwagen(${product.product_id})">Voeg toe aan winkelwagen</button>
-                    `;
-                    lijst.appendChild(div);
-                });
-            });
-
-        bijwerkenWinkelwagenTeller();
-    </script>
-</body>
-</html>
-
-
-<!-- Bestand: winkelwagen.html -->
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Winkelwagen - Commodum Copia</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <header>
-        <h1 class="groene-titel">Winkelwagen</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="producten.html">Producten</a></li>
-                <li><a href="bestelling.html">Bestelling</a></li>
-                <li><a href="login.html">Inloggen</a></li>
-                <li><a href="#">🛒 <span id="cart-count">0</span></a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section id="winkelwagen-items" class="productlijst"></section>
-        <div style="text-align:center; margin:20px">
-            <strong>Totaal: €<span id="totaal-prijs">0.00</span></strong><br><br>
-            <button onclick="leegmakenWinkelwagen()">Winkelwagen leegmaken</button>
-        </div>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Commodum Copia</p>
-    </footer>
-
-    <script>
-        const productenMap = {};
-        let producten = [];
-
-        function bijwerkenWinkelwagenTeller() {
-            const cart = JSON.parse(localStorage.getItem("cart")) || [];
-            const totaal = cart.reduce((sum, item) => sum + item.aantal, 0);
-            document.getElementById("cart-count").textContent = totaal;
-        }
-
-        function leegmakenWinkelwagen() {
-            localStorage.removeItem("cart");
-            toonWinkelwagen();
-            bijwerkenWinkelwagenTeller();
-        }
-
-        function toonWinkelwagen() {
-            const cart = JSON.parse(localStorage.getItem("cart")) || [];
-            const container = document.getElementById("winkelwagen-items");
-            container.innerHTML = "";
-            let totaal = 0;
-
-            cart.forEach(item => {
-                const product = producten.find(p => p.product_id === item.id);
-                if (product) {
-                    const prijs = parseFloat(product.prijs) * item.aantal;
-                    totaal += prijs;
-                    const div = document.createElement("div");
-                    div.className = "product";
-                    div.innerHTML = `
-                        <img src="images/${product.afbeelding}" alt="${product.naam}">
-                        <h3>${product.naam}</h3>
-                        <p>Aantal: ${item.aantal}</p>
-                        <p>Subtotaal: € ${prijs.toFixed(2)}</p>
-                    `;
-                    container.appendChild(div);
-                }
-            });
-            document.getElementById("totaal-prijs").textContent = totaal.toFixed(2);
-        }
-
-        fetch("data/products.json")
-            .then(resp => resp.json())
-            .then(data => {
-                producten = data;
-                toonWinkelwagen();
-                bijwerkenWinkelwagenTeller();
-            });
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>
