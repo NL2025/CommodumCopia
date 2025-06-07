@@ -1,31 +1,40 @@
-const params = new URLSearchParams(window.location.search);
-const categorie = params.get("categorie"); // Haal de categorie op uit de URL
+document.addEventListener("DOMContentLoaded", function () {
+    const loginLink = document.getElementById("login-link");
 
-fetch('data/products.json')
-    .then(response => response.json())
-    .then(data => {
-        const lijst = document.getElementById('productlijst');
-        data.forEach(product => {
-            // Alleen tonen als er geen categorie is of het product in de gekozen categorie zit
-            if (!categorie || product.categorie === categorie) {
-                const div = document.createElement('div');
-                div.classList.add('product');
-                div.innerHTML = `
-                    <a href="product.html?id=${product.product_id}">
-                        <img src="images/${product.afbeelding}" alt="${product.naam}">
-                        <h3>${product.naam}</h3>
-                        <p>${product.beschrijving}</p>
-                        <strong>€ ${product.prijs}</strong>
-                    </a>
-                    <br>
-                    <a href="bestelling.html?product=${encodeURIComponent(product.naam)}">
-                        <button>Bestellen</button>
-                    </a>
-                `;
-                lijst.appendChild(div);
+    function updateLoginStatus() {
+        const isLoggedIn = localStorage.getItem("loggedIn");
+        if (isLoggedIn) {
+            loginLink.textContent = "Uitloggen";
+            loginLink.href = "#";
+            loginLink.onclick = function () {
+                localStorage.removeItem("loggedIn");
+                alert("Je bent uitgelogd.");
+                location.reload();
+            };
+        } else {
+            loginLink.textContent = "Inloggen";
+            loginLink.href = "login.html";
+            loginLink.onclick = null;
+        }
+    }
+
+    updateLoginStatus();
+
+    const loginForm = document.getElementById("login-form");
+    if (loginForm) {
+        loginForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Simpele validatie
+            if (username && password) {
+                localStorage.setItem("loggedIn", "true");
+                alert("Succesvol ingelogd!");
+                window.location.href = "index.html";
+            } else {
+                alert("Vul je gebruikersnaam en wachtwoord in.");
             }
         });
-    })
-    .catch(error => {
-        console.error('Fout bij het laden van producten:', error);
-    });
+    }
+});
