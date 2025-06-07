@@ -2,42 +2,29 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>Login - Commodum Copia</title>
+    <title>Inloggen - Commodum Copia</title>
     <link rel="stylesheet" href="css/style.css">
-    <script>
-        function inloggen(event) {
-            event.preventDefault();
-            const gebruikersnaam = document.getElementById("username").value;
-            const wachtwoord = document.getElementById("password").value;
-
-            // Dummy validatie
-            if (gebruikersnaam && wachtwoord) {
-                localStorage.setItem("gebruiker", gebruikersnaam);
-                window.location.href = "index.html";
-            } else {
-                alert("Vul een gebruikersnaam en wachtwoord in.");
-            }
-        }
-    </script>
 </head>
 <body>
     <header>
-        <h1 class="groene-titel">Login</h1>
+        <h1 class="groene-titel">Inloggen</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
+                <li><a href="categorieen.html">Categorieën</a></li>
                 <li><a href="producten.html">Producten</a></li>
-                <li><a href="bestelling.html">Bestelling</a></li>
+                <li><a href="winkelwagen.html">Winkelwagen <span id="cart-count">0</span></a></li>
+                <li><a href="#" id="login-link">Inloggen</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <form onsubmit="inloggen(event)">
-            <label for="username">Gebruikersnaam:</label><br>
-            <input type="text" id="username" name="username"><br><br>
+        <form id="login-form">
+            <label for="username">Gebruikersnaam of e-mail:</label><br>
+            <input type="text" id="username" name="username" required><br><br>
 
             <label for="password">Wachtwoord:</label><br>
-            <input type="password" id="password" name="password"><br><br>
+            <input type="password" id="password" name="password" required><br><br>
 
             <button type="submit">Inloggen</button>
         </form>
@@ -45,5 +32,6 @@
     <footer>
         <p>&copy; 2025 Commodum Copia</p>
     </footer>
+    <script src="js/script.js"></script>
 </body>
 </html>
