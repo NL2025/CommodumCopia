@@ -4,80 +4,40 @@
     <meta charset="UTF-8">
     <title>Categorieën - Commodum Copia</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
+        <h1 class="groene-titel">Categorieën</h1>
         <nav>
-            <div class="logo">Commodum Copia</div>
             <ul>
                 <li><a href="index.html">Home</a></li>
+                <li><a href="categorieen.html">Categorieën</a></li>
                 <li><a href="producten.html">Producten</a></li>
-                <li><a href="winkelwagen.html">Winkelwagen <span id="cart-count" class="cart-count">0</span></a></li>
+                <li><a href="winkelwagen.html">Winkelwagen <span id="cart-count">0</span></a></li>
                 <li><a href="login.html">Inloggen</a></li>
             </ul>
         </nav>
     </header>
-
     <main>
-        <section class="categorieen">
-            <h1 class="groene-titel">Categorieën</h1>
-            <div id="categorie-lijst" class="categorie-lijst">
-                <!-- Dynamische categorieën worden hier geladen -->
-            </div>
+        <section>
+            <h2>Onze Categorieën</h2>
+            <ul>
+                <li>Groenten</li>
+                <li>Fruit</li>
+                <li>Brood</li>
+                <li>Zuivel</li>
+            </ul>
         </section>
     </main>
-
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Commodum Copia</h3>
-                <p>Uw bron voor verse lokale producten</p>
-            </div>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <p>Email: info@commodumcopia.nl</p>
-                <p>Tel: 020-1234567</p>
-            </div>
-            <div class="footer-section">
-                <h3>Volg Ons</h3>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
-        </div>
-        <p class="copyright">&copy; 2025 Commodum Copia. Alle rechten voorbehouden.</p>
+        <p>&copy; 2025 Commodum Copia</p>
     </footer>
-
     <script>
-        // Dummy data voor demonstratie
-        const categorieen = [
-            { naam: "Fruit", afbeelding: "fruit.jpg" },
-            { naam: "Groente", afbeelding: "groente.jpg" },
-            { naam: "Brood", afbeelding: "brood.jpg" }
-        ];
-
-        const lijst = document.getElementById("categorie-lijst");
-        categorieen.forEach(cat => {
-            const div = document.createElement("div");
-            div.classList.add("categorie-kaart");
-            div.innerHTML = `
-                <a href="producten.html?categorie=${encodeURIComponent(cat.naam)}">
-                    <img src="images/${cat.afbeelding}" alt="${cat.naam}">
-                    <h3>${cat.naam}</h3>
-                </a>
-            `;
-            lijst.appendChild(div);
-        });
-
         function bijwerkenWinkelwagenTeller() {
             const cart = JSON.parse(localStorage.getItem("cart")) || [];
             const totaal = cart.reduce((sum, item) => sum + item.aantal, 0);
             document.getElementById("cart-count").textContent = totaal;
         }
-
         bijwerkenWinkelwagenTeller();
     </script>
 </body>
