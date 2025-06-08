@@ -1,4 +1,3 @@
-// js/product.js
 const params = new URLSearchParams(window.location.search);
 const productId = parseInt(params.get('id'));
 
@@ -24,7 +23,6 @@ fetch('data/products.json')
         let winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
         winkelwagen.push(productId);
         localStorage.setItem("winkelwagen", JSON.stringify(winkelwagen));
-        alert("Product toegevoegd aan winkelwagen!");
         window.location.href = "bestelling.html";
       });
     } else {
