@@ -25,3 +25,24 @@ nav ul li a:hover {
   background-color: #1b5e20;
   transform: scale(1.05);
 }
+.hero-header {
+  background-image: url("../images/fruit.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  position: relative;
+}
+
+.header-content {
+  background-color: rgba(46, 125, 50, 0.85);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: fit-content;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+}
