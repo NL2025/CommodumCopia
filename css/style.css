@@ -40,8 +40,8 @@ nav ul li {
 
 nav ul li a {
   background-color: #2e7d32;
-  padding: 6px 12px;
-  border-radius: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
   color: white;
   text-decoration: none;
   font-weight: bold;
@@ -51,7 +51,7 @@ nav ul li a:hover {
   background-color: #1b5e20;
 }
 
-/* Producten overzicht */
+/* Productlijst */
 #productlijst {
   display: flex;
   flex-wrap: wrap;
@@ -61,13 +61,13 @@ nav ul li a:hover {
 }
 
 .product {
-  background-color: white;
+  background-color: #e8f5e9;
   border: 2px solid #2e7d32;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 15px;
-  width: 200px;
+  width: 220px;
   text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
   transition: transform 0.2s;
 }
 
@@ -81,6 +81,13 @@ nav ul li a:hover {
   border-radius: 6px;
 }
 
+.product h3 {
+  background-color: #2e7d32;
+  color: white;
+  padding: 6px;
+  border-radius: 6px;
+}
+
 .add-to-cart-btn {
   display: inline-block;
   margin-top: 10px;
@@ -89,6 +96,7 @@ nav ul li a:hover {
   padding: 8px 12px;
   text-decoration: none;
   border-radius: 6px;
+  font-weight: bold;
 }
 
 .add-to-cart-btn:hover {
@@ -99,7 +107,7 @@ nav ul li a:hover {
 .product-detail-box {
   max-width: 500px;
   margin: 30px auto;
-  background-color: #ffffff;
+  background-color: #e8f5e9;
   padding: 20px;
   border-radius: 10px;
   border: 2px solid #2e7d32;
@@ -117,7 +125,7 @@ nav ul li a:hover {
 #winkelwagen, #klantgegevens {
   max-width: 600px;
   margin: 20px auto;
-  background-color: #fff;
+  background-color: #e8f5e9;
   padding: 20px;
   border-radius: 10px;
   border: 2px solid #2e7d32;
@@ -142,6 +150,7 @@ form button {
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 form button:hover {
