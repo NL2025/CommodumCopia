@@ -1,51 +1,75 @@
-# Commodum Copia
+# Commodum Copia – Webontwikkeling Vraag 3
 
-## 📦 Projectoverzicht
-Commodum Copia is een interactieve online supermarkt gespecialiseerd in verse en biologische producten. De website biedt een gebruikersvriendelijke ervaring met functies zoals productoverzicht, dynamische winkelwagen, productdetails, bestelproces en login/autorisatie.
+## Inhoudsopgave
 
----
-
-## 📁 Bestandsstructuur
-
-- index.html – Startpagina met algemene info.
-- categorieen.html – Overzicht van alle categorieën.
-- producten.html – Dynamisch overzicht van producten uit products.json.
-- product.html – Detailpagina per product (met knop "Voeg toe aan winkelwagen").
-- winkelwagen.html – Geavanceerde winkelwagen met opties om aantal aan te passen/verwijderen.
-- bestelling.html – Bevestigingspagina voor bestelling.
-- login.html – Inlogpagina voor gebruikers (autorisatie).
-- css/style.css – Gehele styling van de website.
-- js/script.js – Alle logica voor winkelwagen, tellers, opslaan in localStorage.
-- data/products.json – JSON-database met alle productgegevens.
-- images/ – Map met productafbeeldingen.
+1. index.html – Startpagina  
+2. categorieen.html – Overzicht van categorieën  
+3. producten.html – Lijst van producten  
+4. product.html – Detailpagina van één product  
+5. bestelling.html – Winkelwagen en bestelformulier  
+6. inloggen.html – Inlog- en uitlogfunctionaliteit  
+7. css/style.css – Stijlen voor de website  
+8. js/* – JavaScript-functionaliteit  
+9. data/products.json – Productgegevens  
+10. images/* – Afbeeldingen van producten  
+11. README.md – Projectoverzicht  
+12. Video (optioneel) – Korte demonstratie van de app
 
 ---
 
-## 🎨 Kleuren en ontwerp
-- Groene accenten: #2e7d32 voor consistentie en herkenbaarheid.
-- Responsieve layout: geschikt voor desktop en mobiel.
-- Titels in groene rechthoeken (class .groene-titel).
+## Bestanden en Beschrijvingen
+
+### index.html  
+- Startpagina met algemene informatie over de winkel.
+
+### categorieen.html  
+- Toon categorieën zoals "Fruit", "Brood" met links naar bijbehorende producten.
+
+### producten.html  
+- Dynamisch geladen lijst met producten. Elk product bevat afbeelding, naam, beschrijving, prijs en knop naar `product.html`.
+
+### product.html  
+- Detailweergave van één product met knop "Voeg toe aan winkelwagen" die het item opslaat in `localStorage`.
+
+### bestelling.html  
+- Toont de producten uit `localStorage`, berekent totaalprijs en bevat formulier voor klantgegevens.
+
+### inloggen.html  
+- Inloggen met gebruikersnaam/wachtwoord ("admin" / "1234") + uitloggen via `localStorage`.
 
 ---
 
-## 🔐 Veiligheid en autorisatie
-- Basis loginpagina geïmplementeerd (login.html).
-- Winkelwagen wordt opgeslagen in localStorage per gebruiker.
-- De applicatie houdt geen persoonlijke gegevens vast zonder toestemming.
+## JavaScript
+
+- `script.js` – Laadt producten in producten.html  
+- `product.js` – Toont details van geselecteerd product en voegt toe aan winkelwagen  
+- `bestelling.js` – Toont inhoud van winkelwagen en verwerkt bestelling  
+- `login.js` – Handelt login en logout af
 
 ---
 
-## 📽️ Video-uitleg
-Een korte video (max 3 min.) waarin de werking van de applicatie wordt getoond:
-- Navigatie tussen pagina’s
-- Product selecteren en toevoegen aan winkelwagen
-- Aantal wijzigen/verwijderen
-- Bestelling bevestigen
-- Inloggen (autorisatie)
+## Afbeeldingen
+
+- `images/appels.jpg`  
+- `images/brood.jpg`  
+- `images/fruit.jpg`
 
 ---
 
-## ✍️ Auteur
-S. Alnouh  
-Student MBO 4 Software Developer  
-Juni 2025
+## Veiligheid & Privacy
+
+- Geen gevoelige data opgeslagen
+- Alles wordt lokaal opgeslagen via `localStorage`
+- Formulieren hebben verplichte invoervelden
+
+---
+
+## Opmerking
+
+Deze versie bevat alle verbeteringen op basis van feedback uit Vraag 1:
+- Toevoegen van productdetailpagina
+- Functionele winkelwagen + bestelling
+- Inlogfunctionaliteit
+- Volledige documentatie + duidelijke structuur
+
+---
