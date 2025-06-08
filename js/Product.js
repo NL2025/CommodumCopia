@@ -1,34 +1,30 @@
 const params = new URLSearchParams(window.location.search);
-const productId = parseInt(params.get('id'));
+const id = params.get('id');
 
 fetch('data/products.json')
-  .then(res => res.json())
+  .then(response => response.json())
   .then(data => {
-    const product = data.find(p => p.product_id === productId);
-    const detailDiv = document.getElementById('product-detail');
+    const product = data.find(p => p.product_id == id);
+    const container = document.getElementById('product-detail');
 
     if (product) {
-      detailDiv.innerHTML = `
-        <div class="product-detail-box">
+      container.innerHTML = `
+        <div class="product">
           <img src="images/${product.afbeelding}" alt="${product.naam}">
-          <h2>${product.naam}</h2>
+          <h3>${product.naam}</h3>
           <p>${product.beschrijving}</p>
-          <strong>Prijs: € ${product.prijs}</strong><br><br>
-          <a href="#" class="add-to-cart-btn">Voeg toe aan winkelwagen</a>
+          <strong>€ ${product.prijs}</strong><br>
+          <button onclick="addToCart(${product.product_id})">Voeg toe aan winkelwagen</button>
         </div>
       `;
-
-      document.querySelector(".add-to-cart-btn").addEventListener("click", function(e) {
-        e.preventDefault();
-        let winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
-        winkelwagen.push(productId);
-        localStorage.setItem("winkelwagen", JSON.stringify(winkelwagen));
-        window.location.href = "bestelling.html";
-      });
     } else {
-      detailDiv.innerHTML = `<p>Product niet gevonden.</p>`;
+      container.innerHTML = "<p>Product niet gevonden.</p>";
     }
-  })
-  .catch(err => {
-    console.error("Fout bij laden van product:", err);
   });
+
+function addToCart(id) {
+  let cart = JSON.parse(localStorage.getItem("winkelwagen")) || [];
+  cart.push(id);
+  localStorage.setItem("winkelwagen", JSON.stringify(cart));
+  alert("Product toegevoegd aan winkelwagen!");
+}
