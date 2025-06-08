@@ -4,15 +4,20 @@
     "naam": "Biologische Appels",
     "prijs": "2.99",
     "beschrijving": "Verse appels uit Nederland",
-    "afbeelding": "appels.jpg",
-    "categorie": "fruit"
+    "afbeelding": "appels.jpg"
   },
   {
     "product_id": 2,
     "naam": "Volkoren Brood",
     "prijs": "1.89",
-    "beschrijving": "Gezond en voedzaam volkorenbrood",
-    "afbeelding": "brood.jpg",
-    "categorie": "brood"
+    "beschrijving": "Gezond en voedzaam brood",
+    "afbeelding": "brood.jpg"
+  },
+  {
+    "product_id": 3,
+    "naam": "Verse Bananen",
+    "prijs": "1.49",
+    "beschrijving": "Zoete bananen, ideaal als snack",
+    "afbeelding": "bananen.jpg"
   }
 ]
