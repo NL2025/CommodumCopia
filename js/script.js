@@ -7,12 +7,11 @@ fetch('data/products.json')
       const div = document.createElement('div');
       div.classList.add('product');
       div.innerHTML = `
-        <a href="product.html?id=${product.product_id}">
-          <img src="images/${product.afbeelding}" alt="${product.naam}">
-          <h3>${product.naam}</h3>
-        </a>
+        <img src="images/${product.afbeelding}" alt="${product.naam}">
+        <h3>${product.naam}</h3>
         <p>${product.beschrijving}</p>
-        <strong>€ ${product.prijs}</strong>
+        <strong>€ ${product.prijs}</strong><br>
+        <a href="product.html?id=${product.product_id}" class="add-to-cart-btn">Bekijk product</a>
       `;
       lijst.appendChild(div);
     });
