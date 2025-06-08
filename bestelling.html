@@ -1,63 +1,44 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bestelling - Commodum Copia</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <title>Bestelling - Commodum Copia</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <h1 class="groene-titel">Bestelling Afronden</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="categorieen.html">Categorieën</a></li>
-                <li><a href="producten.html">Producten</a></li>
-                <li><a href="winkelwagen.html">Winkelwagen <span id="cart-count">0</span></a></li>
-                <li><a href="login.html">Inloggen</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <h1>Jouw Bestelling</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="producten.html">Producten</a></li>
+        <li><a href="bestelling.html">Bestelling</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <section id="checkout">
-            <h2>Uw Gegevens</h2>
-            <form id="bestel-formulier">
-                <label for="naam">Naam:</label><br>
-                <input type="text" id="naam" name="naam" required><br><br>
+  <main>
+    <section id="winkelwagen">
+      <h2>Producten in je winkelwagen:</h2>
+      <ul id="wagen-lijst"></ul>
+      <p><strong>Totaalprijs: € <span id="totaal-bedrag">0.00</span></strong></p>
+    </section>
 
-                <label for="email">E-mailadres:</label><br>
-                <input type="email" id="email" name="email" required><br><br>
+    <section id="klantgegevens">
+      <h2>Vul je gegevens in om te bestellen:</h2>
+      <form id="order-form">
+        <label>Naam: <input type="text" name="naam" required></label><br>
+        <label>E-mail: <input type="email" name="email" required></label><br>
+        <label>Adres: <input type="text" name="adres" required></label><br>
+        <button type="submit">Bevestig Bestelling</button>
+      </form>
+    </section>
+  </main>
 
-                <label for="adres">Adres:</label><br>
-                <input type="text" id="adres" name="adres" required><br><br>
+  <footer>
+    <p>&copy; 2025 Commodum Copia</p>
+  </footer>
 
-                <button type="submit">Bestelling Plaatsen</button>
-            </form>
-            <div id="bevestiging" class="verborgen">
-                <h3>Bedankt voor uw bestelling!</h3>
-                <p>U ontvangt binnenkort een bevestiging per e-mail.</p>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Commodum Copia</p>
-    </footer>
-
-    <script>
-        const cart = JSON.parse(localStorage.getItem("cart")) || [];
-        document.getElementById("cart-count").textContent = cart.reduce((sum, p) => sum + p.aantal, 0);
-
-        const form = document.getElementById("bestel-formulier");
-        form.addEventListener("submit", function(e) {
-            e.preventDefault();
-            localStorage.removeItem("cart");
-            document.getElementById("bestel-formulier").style.display = "none";
-            document.getElementById("bevestiging").classList.remove("verborgen");
-            document.getElementById("cart-count").textContent = "0";
-        });
-    </script>
+  <script src="js/bestelling.js"></script>
 </body>
 </html>
