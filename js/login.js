@@ -10,20 +10,26 @@ document.addEventListener("DOMContentLoaded", function () {
     if (gebruiker) {
       if (authLink) {
         authLink.innerText = "Uitloggen";
-        authLink.href = "#"; // حتى لا يعيد تحميل الصفحة
-        authLink.addEventListener("click", function (e) {
+        authLink.href = "#";
+        authLink.onclick = function (e) {
           e.preventDefault();
           localStorage.removeItem("gebruiker");
+
+          // إخفاء كل شيء عند الخروج من الأعلى
           if (loginForm) loginForm.style.display = "block";
           if (logoutBtn) logoutBtn.style.display = "none";
           if (welkomBericht) welkomBericht.textContent = "";
+          document.getElementById("username").value = "";
+          document.getElementById("password").value = "";
+
           authLink.innerText = "Inloggen";
           authLink.href = "inloggen.html";
-        });
+        };
       }
+
       if (loginForm) loginForm.style.display = "none";
       if (logoutBtn) logoutBtn.style.display = "block";
-      if (welkomBericht) welkomBericht.textContent = "Welkom!";
+      if (welkomBericht) welkomBericht.textContent = "Welkom, " + gebruiker + "!";
     } else {
       if (authLink) {
         authLink.innerText = "Inloggen";
@@ -43,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (username.length >= 3 && password.length >= 3) {
         localStorage.setItem("gebruiker", username);
-        toonLoginStatus(); // ← يقوم بالتحديث مباشرة
+        toonLoginStatus();
       } else {
         alert("Gebruikersnaam en wachtwoord moeten minstens 3 tekens zijn.");
       }
