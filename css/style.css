@@ -94,24 +94,17 @@ button {
 button:hover {
   background-color: #1b5e20;
 }
-#login-section {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
 
 #login-section {
   max-width: 400px;
-  margin: 40px auto;
+  margin: 50px auto 80px auto;
   padding: 30px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: left;
+  position: relative;
+  top: 30px;
 }
 
 #login-section form label {
