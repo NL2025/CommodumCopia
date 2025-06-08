@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const loginForm = document.getElementById("login-form");
   const logoutBtn = document.getElementById("logout-btn");
-  const welkomBericht = document.getElementById("welkom-bericht");
   const authLink = document.getElementById("auth-link");
 
   function toonLoginStatus() {
@@ -14,30 +13,25 @@ document.addEventListener("DOMContentLoaded", function () {
         authLink.onclick = function (e) {
           e.preventDefault();
           localStorage.removeItem("gebruiker");
-
-          // إخفاء كل شيء عند الخروج من الأعلى
           if (loginForm) loginForm.style.display = "block";
           if (logoutBtn) logoutBtn.style.display = "none";
-          if (welkomBericht) welkomBericht.textContent = "";
-          document.getElementById("username").value = "";
-          document.getElementById("password").value = "";
-
           authLink.innerText = "Inloggen";
           authLink.href = "inloggen.html";
+          if (document.getElementById("username")) document.getElementById("username").value = "";
+          if (document.getElementById("password")) document.getElementById("password").value = "";
         };
       }
 
       if (loginForm) loginForm.style.display = "none";
       if (logoutBtn) logoutBtn.style.display = "block";
-      if (welkomBericht) welkomBericht.textContent = "Welkom, " + gebruiker + "!";
     } else {
       if (authLink) {
         authLink.innerText = "Inloggen";
         authLink.href = "inloggen.html";
+        authLink.onclick = null;
       }
       if (loginForm) loginForm.style.display = "block";
       if (logoutBtn) logoutBtn.style.display = "none";
-      if (welkomBericht) welkomBericht.textContent = "";
     }
   }
 
@@ -49,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (username.length >= 3 && password.length >= 3) {
         localStorage.setItem("gebruiker", username);
-        toonLoginStatus();
+        toonLoginStatus(); // تحديث فوري
       } else {
         alert("Gebruikersnaam en wachtwoord moeten minstens 3 tekens zijn.");
       }
@@ -59,9 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
   if (logoutBtn) {
     logoutBtn.addEventListener("click", function () {
       localStorage.removeItem("gebruiker");
-      document.getElementById("username").value = "";
-      document.getElementById("password").value = "";
       toonLoginStatus();
+      if (document.getElementById("username")) document.getElementById("username").value = "";
+      if (document.getElementById("password")) document.getElementById("password").value = "";
     });
   }
 
