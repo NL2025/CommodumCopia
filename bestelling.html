@@ -7,40 +7,23 @@
 </head>
 <body>
   <header>
-    <h1>Jouw Bestelling</h1>
+    <h1>Mijn Bestelling</h1>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="categorieen.html">Categorieën</a></li>
         <li><a href="producten.html">Producten</a></li>
         <li><a href="bestelling.html">Bestelling</a></li>
-        <li><a href="inloggen.html">Inloggen</a></li>
+        <li><a href="inloggen.html" id="auth-link">Inloggen</a></li>
       </ul>
     </nav>
   </header>
-
   <main>
-    <section id="winkelwagen">
-      <h2>Producten in je winkelwagen:</h2>
-      <ul id="wagen-lijst"></ul>
-      <p><strong>Totaalprijs: € <span id="totaal-bedrag">0.00</span></strong></p>
-    </section>
-
-    <section id="klantgegevens">
-      <h2>Vul je gegevens in om te bestellen:</h2>
-      <form id="order-form">
-        <label>Naam: <input type="text" name="naam" required></label><br>
-        <label>E-mail: <input type="email" name="email" required></label><br>
-        <label>Adres: <input type="text" name="adres" required></label><br>
-        <button type="submit">Bevestig Bestelling</button>
-      </form>
-    </section>
+    <div id="winkelwagen-container"></div>
   </main>
-
   <footer>
     <p>&copy; 2025 Commodum Copia</p>
   </footer>
-
   <script src="js/bestelling.js"></script>
 </body>
 </html>
