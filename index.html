@@ -1,40 +1,31 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <title>Home - Commodum Copia</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <title>Commodum Copia - Home</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <h1 class="groene-titel">Welkom bij Commodum Copia</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="categorieen.html">Categorieën</a></li>
-                <li><a href="producten.html">Producten</a></li>
-                <li><a href="winkelwagen.html">Winkelwagen <span id="cart-count">0</span></a></li>
-                <li><a href="login.html">Inloggen</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section>
-            <h2>Over Ons</h2>
-            <p>Commodum Copia is jouw supermarkt voor verse en lokale producten. Wij leveren de beste kwaliteit direct aan huis.</p>
-            <a href="producten.html" class="button">Bekijk onze producten</a>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 Commodum Copia</p>
-    </footer>
-    <script>
-        function bijwerkenWinkelwagenTeller() {
-            const cart = JSON.parse(localStorage.getItem("cart")) || [];
-            const totaal = cart.reduce((sum, item) => sum + item.aantal, 0);
-            document.getElementById("cart-count").textContent = totaal;
-        }
-        bijwerkenWinkelwagenTeller();
-    </script>
+  <header>
+    <h1>Welkom bij Commodum Copia</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="categorieen.html">Categorieën</a></li>
+        <li><a href="producten.html">Producten</a></li>
+        <li><a href="bestelling.html">Bestelling</a></li>
+        <li><a href="inloggen.html">Inloggen</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2>Over Ons</h2>
+      <p>Commodum Copia is jouw betrouwbare supermarkt voor verse en biologische producten. Bekijk onze producten online!</p>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Commodum Copia</p>
+  </footer>
 </body>
 </html>
