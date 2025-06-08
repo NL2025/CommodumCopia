@@ -8,16 +8,30 @@ document.addEventListener("DOMContentLoaded", function () {
     const gebruiker = localStorage.getItem("gebruiker");
 
     if (gebruiker) {
-      if (authLink) authLink.innerText = "Uitloggen";
+      if (authLink) {
+        authLink.innerText = "Uitloggen";
+        authLink.href = "#"; // حتى لا يعيد تحميل الصفحة
+        authLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          localStorage.removeItem("gebruiker");
+          if (loginForm) loginForm.style.display = "block";
+          if (logoutBtn) logoutBtn.style.display = "none";
+          if (welkomBericht) welkomBericht.textContent = "";
+          authLink.innerText = "Inloggen";
+          authLink.href = "inloggen.html";
+        });
+      }
       if (loginForm) loginForm.style.display = "none";
       if (logoutBtn) logoutBtn.style.display = "block";
-      if (welkomBericht) welkomBericht.textContent = "Welkom, " + gebruiker + "!";
+      if (welkomBericht) welkomBericht.textContent = "Welkom!";
     } else {
-      if (authLink) authLink.innerText = "Inloggen";
+      if (authLink) {
+        authLink.innerText = "Inloggen";
+        authLink.href = "inloggen.html";
+      }
       if (loginForm) loginForm.style.display = "block";
       if (logoutBtn) logoutBtn.style.display = "none";
       if (welkomBericht) welkomBericht.textContent = "";
-      if (loginForm) loginForm.reset(); // تفريغ الحقول
     }
   }
 
@@ -29,10 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (username.length >= 3 && password.length >= 3) {
         localStorage.setItem("gebruiker", username);
-        toonLoginStatus();
-        window.location.href = "index.html"; // بدون alert
+        toonLoginStatus(); // ← يقوم بالتحديث مباشرة
       } else {
-        alert("Gebruikersnaam en wachtwoord moeten minstens 3 tekens lang zijn.");
+        alert("Gebruikersnaam en wachtwoord moeten minstens 3 tekens zijn.");
       }
     });
   }
@@ -40,8 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
   if (logoutBtn) {
     logoutBtn.addEventListener("click", function () {
       localStorage.removeItem("gebruiker");
+      document.getElementById("username").value = "";
+      document.getElementById("password").value = "";
       toonLoginStatus();
-      window.location.href = "index.html"; // بدون alert
     });
   }
 
