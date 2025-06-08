@@ -1,3 +1,4 @@
+// js/bestelling.js
 const wagenLijst = document.getElementById("wagen-lijst");
 const totaalBedrag = document.getElementById("totaal-bedrag");
 
