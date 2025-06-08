@@ -1,4 +1,3 @@
-// js/script.js
 fetch('data/products.json')
   .then(response => response.json())
   .then(data => {
@@ -11,7 +10,9 @@ fetch('data/products.json')
         <h3>${product.naam}</h3>
         <p>${product.beschrijving}</p>
         <strong>€ ${product.prijs}</strong><br>
-        <a href="product.html?id=${product.product_id}" class="add-to-cart-btn">Bekijk product</a>
+        <a href="product.html?id=${product.product_id}">
+          <button>Bekijk product</button>
+        </a>
       `;
       lijst.appendChild(div);
     });
