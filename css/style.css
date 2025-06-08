@@ -1,3 +1,62 @@
+body {
+  background-color: #fefefe;
+  color: #212121;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-image: url("../images/fruit.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+footer {
+  background-color: #2e7d32;
+  color: white;
+  text-align: center;
+  padding: 1em;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Producten overzicht */
+#productlijst {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+}
+
 .product {
   background-color: white;
   border: 1px solid #ddd;
@@ -30,5 +89,56 @@
 }
 
 .add-to-cart-btn:hover {
+  background-color: #1b5e20;
+}
+
+/* Product detail */
+.product-detail-box {
+  max-width: 500px;
+  margin: 30px auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.product-detail-box img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Bestelling */
+#winkelwagen, #klantgegevens {
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+#winkelwagen ul {
+  padding-left: 20px;
+}
+
+form input {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+form button {
+  background-color: #2e7d32;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+form button:hover {
   background-color: #1b5e20;
 }
