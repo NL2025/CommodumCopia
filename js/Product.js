@@ -1,3 +1,4 @@
+// js/product.js
 const params = new URLSearchParams(window.location.search);
 const productId = parseInt(params.get('id'));
 
