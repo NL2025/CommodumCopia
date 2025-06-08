@@ -6,12 +6,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function toonLoginStatus() {
     const gebruiker = localStorage.getItem("gebruiker");
+
     if (gebruiker) {
       if (authLink) authLink.innerText = "Uitloggen";
+      if (loginForm) loginForm.style.display = "none"; // 👈 هذا السطر كان مفقودًا
       if (logoutBtn) logoutBtn.style.display = "block";
       if (welkomBericht) welkomBericht.textContent = "Welkom, " + gebruiker + "!";
     } else {
       if (authLink) authLink.innerText = "Inloggen";
+      if (loginForm) loginForm.style.display = "block";
       if (logoutBtn) logoutBtn.style.display = "none";
       if (welkomBericht) welkomBericht.textContent = "";
     }
