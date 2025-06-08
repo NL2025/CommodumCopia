@@ -1,27 +1,40 @@
-const wagenLijst = document.getElementById("wagen-lijst");
-const totaalBedrag = document.getElementById("totaal-bedrag");
-
-let winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
-let totaal = 0;
-
-fetch("data/products.json")
-  .then(res => res.json())
+fetch('data/products.json')
+  .then(response => response.json())
   .then(data => {
-    winkelwagen.forEach(productId => {
-      const product = data.find(p => p.product_id === productId);
-      if (product) {
-        const li = document.createElement("li");
-        li.textContent = `${product.naam} - € ${product.prijs}`;
-        wagenLijst.appendChild(li);
-        totaal += parseFloat(product.prijs);
-      }
+    const container = document.getElementById('winkelwagen-container');
+    let winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
+    let uniekeIDs = [...new Set(winkelwagen)];
+    let totaal = 0;
+
+    if (winkelwagen.length === 0) {
+      container.innerHTML = "<p>Je winkelwagen is leeg.</p>";
+      return;
+    }
+
+    let html = '<ul>';
+    uniekeIDs.forEach(id => {
+      const product = data.find(p => p.product_id === id);
+      const aantal = winkelwagen.filter(x => x === id).length;
+      const prijs = parseFloat(product.prijs) * aantal;
+      totaal += prijs;
+
+      html += `
+        <li>
+          ${product.naam} - €${product.prijs} x ${aantal} = €${prijs.toFixed(2)}
+          <button onclick="verwijderUitWinkelwagen(${id})">Verwijder</button>
+        </li>
+      `;
     });
-    totaalBedrag.textContent = totaal.toFixed(2);
+    html += `</ul><p><strong>Totaal: €${totaal.toFixed(2)}</strong></p>`;
+    container.innerHTML = html;
   });
 
-document.getElementById("order-form").addEventListener("submit", function (e) {
-  e.preventDefault();
-  alert("Bedankt voor je bestelling!");
-  localStorage.removeItem("winkelwagen");
-  window.location.href = "index.html";
-});
+function verwijderUitWinkelwagen(id) {
+  let winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
+  const index = winkelwagen.indexOf(id);
+  if (index !== -1) {
+    winkelwagen.splice(index, 1);
+    localStorage.setItem("winkelwagen", JSON.stringify(winkelwagen));
+    location.reload();
+  }
+}
