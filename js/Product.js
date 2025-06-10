@@ -23,8 +23,9 @@ fetch('../data/products.json')
   });
 
 function addToCart(id) {
-  let cart = JSON.parse(localStorage.getItem("winkelwagen")) || [];
-  cart.push(id);
-  localStorage.setItem("winkelwagen", JSON.stringify(cart));
-  alert("Product toegevoegd aan winkelwagen!");
+  let winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
+  winkelwagen.push(id);
+  localStorage.setItem("winkelwagen", JSON.stringify(winkelwagen));
+  // تحديث العدد في الشريط
+  updateCartCounter();
 }
