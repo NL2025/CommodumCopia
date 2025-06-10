@@ -1,4 +1,4 @@
-fetch('data/products.json')
+fetch('./data/products.json')
   .then(response => response.json())
   .then(data => {
     const container = document.getElementById('winkelwagen-container');
@@ -8,6 +8,7 @@ fetch('data/products.json')
 
     if (winkelwagen.length === 0) {
       container.innerHTML = "<p>Je winkelwagen is leeg.</p>";
+      updateCartCounter();
       return;
     }
 
@@ -27,6 +28,7 @@ fetch('data/products.json')
     });
     html += `</ul><p><strong>Totaal: €${totaal.toFixed(2)}</strong></p>`;
     container.innerHTML = html;
+    updateCartCounter();
   });
 
 function verwijderUitWinkelwagen(id) {
@@ -37,4 +39,10 @@ function verwijderUitWinkelwagen(id) {
     localStorage.setItem("winkelwagen", JSON.stringify(winkelwagen));
     location.reload();
   }
+}
+
+function updateCartCounter() {
+  const winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
+  const counter = document.getElementById("winkelwagen-counter");
+  if (counter) counter.innerText = winkelwagen.length;
 }
