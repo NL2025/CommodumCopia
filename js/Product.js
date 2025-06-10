@@ -29,3 +29,8 @@ function addToCart(id) {
   // تحديث العدد في الشريط
   updateCartCounter();
 }
+function updateCartCounter() {
+  const winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
+  const counter = document.getElementById("winkelwagen-counter");
+  if (counter) counter.innerText = winkelwagen.length;
+}
