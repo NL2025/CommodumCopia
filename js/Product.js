@@ -1,7 +1,7 @@
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
 
-fetch('../data/products.json')
+fetch('./data/products.json')
   .then(response => response.json())
   .then(data => {
     const product = data.find(p => p.product_id == id);
@@ -20,12 +20,18 @@ fetch('../data/products.json')
     } else {
       container.innerHTML = "<p>Product niet gevonden.</p>";
     }
+    updateCartCounter();
   });
 
 function addToCart(id) {
   let winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
   winkelwagen.push(id);
   localStorage.setItem("winkelwagen", JSON.stringify(winkelwagen));
-  // تحديث العدد في الشريط
   updateCartCounter();
+}
+
+function updateCartCounter() {
+  const winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
+  const counter = document.getElementById("winkelwagen-counter");
+  if (counter) counter.innerText = winkelwagen.length;
 }
