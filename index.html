@@ -13,7 +13,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="categorieen.html">Categorieën</a></li>
         <li><a href="producten.html">Producten</a></li>
-        <li><a href="bestelling.html">Bestelling</a></li>
+        <li><a href="bestelling.html">Bestelling (<span id="winkelwagen-counter">0</span>)</a></li>
         <li><a href="inloggen.html" id="auth-link">Inloggen</a></li>
       </ul>
     </nav>
@@ -31,5 +31,10 @@
   </footer>
 
   <script src="js/login.js"></script>
+  <script>
+    if (typeof updateCartCounter === "function") {
+      updateCartCounter();
+    }
+  </script>
 </body>
 </html>
