@@ -1,4 +1,4 @@
-fetch('./data/products.json')
+fetch('data/products.json')
   .then(response => response.json())
   .then(data => {
     const container = document.getElementById('winkelwagen-container');
@@ -7,7 +7,7 @@ fetch('./data/products.json')
     let totaal = 0;
 
     if (winkelwagen.length === 0) {
-      container.innerHTML = "<p>Je winkelwagen is leeg.</p>";
+      container.innerHTML = "Je winkelwagen is leeg.";
       updateCartCounter();
       return;
     }
