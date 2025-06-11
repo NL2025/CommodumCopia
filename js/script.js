@@ -16,7 +16,11 @@ fetch('data/products.json')
       `;
       lijst.appendChild(div);
     });
-  })
-  .catch(error => {
-    console.error('Fout bij het laden van producten:', error);
+    updateCartCounter();
   });
+
+function updateCartCounter() {
+  const winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
+  const counter = document.getElementById("winkelwagen-counter");
+  if (counter) counter.innerText = winkelwagen.length;
+}
