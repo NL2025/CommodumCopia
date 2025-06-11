@@ -63,7 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
   toonLoginStatus();
 });
 
-// ✅ الدالة التي تُحدث عداد السلة في كل الصفحات
 function updateCartCounter() {
   const winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
   const counter = document.getElementById("winkelwagen-counter");
