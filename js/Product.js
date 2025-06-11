@@ -1,7 +1,7 @@
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
 
-fetch('./data/products.json')
+fetch('data/products.json')
   .then(response => response.json())
   .then(data => {
     const product = data.find(p => p.product_id == id);
@@ -20,6 +20,7 @@ fetch('./data/products.json')
     } else {
       container.innerHTML = "<p>Product niet gevonden.</p>";
     }
+
     updateCartCounter();
   });
 
