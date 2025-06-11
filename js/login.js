@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
   const loginForm = document.getElementById("login-form");
   const logoutBtn = document.getElementById("logout-btn");
@@ -21,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
           if (document.getElementById("password")) document.getElementById("password").value = "";
         };
       }
-
       if (loginForm) loginForm.style.display = "none";
       if (logoutBtn) logoutBtn.style.display = "block";
     } else {
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (username.length >= 3 && password.length >= 3) {
         localStorage.setItem("gebruiker", username);
-        toonLoginStatus(); // تحديث فوري
+        toonLoginStatus();
       } else {
         alert("Gebruikersnaam en wachtwoord moeten minstens 3 tekens zijn.");
       }
@@ -60,4 +60,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   toonLoginStatus();
+  updateCartCounter();
 });
+
+function updateCartCounter() {
+  const winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
+  const counter = document.getElementById("winkelwagen-counter");
+  if (counter) counter.innerText = winkelwagen.length;
+}
