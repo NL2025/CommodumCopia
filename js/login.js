@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
   const loginForm = document.getElementById("login-form");
   const logoutBtn = document.getElementById("logout-btn");
@@ -20,8 +19,10 @@ document.addEventListener("DOMContentLoaded", function () {
           authLink.href = "inloggen.html";
           if (document.getElementById("username")) document.getElementById("username").value = "";
           if (document.getElementById("password")) document.getElementById("password").value = "";
+          updateCartCounter();
         };
       }
+
       if (loginForm) loginForm.style.display = "none";
       if (logoutBtn) logoutBtn.style.display = "block";
     } else {
@@ -33,6 +34,8 @@ document.addEventListener("DOMContentLoaded", function () {
       if (loginForm) loginForm.style.display = "block";
       if (logoutBtn) logoutBtn.style.display = "none";
     }
+
+    updateCartCounter();
   }
 
   if (loginForm) {
@@ -54,15 +57,13 @@ document.addEventListener("DOMContentLoaded", function () {
     logoutBtn.addEventListener("click", function () {
       localStorage.removeItem("gebruiker");
       toonLoginStatus();
-      if (document.getElementById("username")) document.getElementById("username").value = "";
-      if (document.getElementById("password")) document.getElementById("password").value = "";
     });
   }
 
   toonLoginStatus();
-  updateCartCounter();
 });
 
+// ✅ الدالة التي تُحدث عداد السلة في كل الصفحات
 function updateCartCounter() {
   const winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
   const counter = document.getElementById("winkelwagen-counter");
