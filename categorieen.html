@@ -13,15 +13,16 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="categorieen.html">Categorieën</a></li>
         <li><a href="producten.html">Producten</a></li>
-        <li><a href="bestelling.html">Bestelling</a></li>
+        <li><a href="bestelling.html">Bestelling (<span id="winkelwagen-counter">0</span>)</a></li>
         <li><a href="inloggen.html" id="auth-link">Inloggen</a></li>
       </ul>
     </nav>
   </header>
+
   <main>
     <div class="categorieen">
       <div class="categorie">
-        <img src="images/appels.jpg?v=2" alt="Appels">
+        <img src="images/appels.jpg" alt="Appels">
         <h3>Appels</h3>
       </div>
       <div class="categorie">
@@ -30,8 +31,16 @@
       </div>
     </div>
   </main>
+
   <footer>
     <p>&copy; 2025 Commodum Copia</p>
   </footer>
+
+  <script src="js/login.js"></script>
+  <script>
+    if (typeof updateCartCounter === "function") {
+      updateCartCounter();
+    }
+  </script>
 </body>
 </html>
