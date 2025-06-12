@@ -28,6 +28,12 @@ fetch('data/products.json')
     });
     html += `</ul><p><strong>Totaal: €${totaal.toFixed(2)}</strong></p>`;
     container.innerHTML = html;
+
+    const afronden = document.getElementById('afronden-container');
+    afronden.innerHTML = `
+      <button onclick="afrondenBestelling()">Bestelling Afronden</button>
+    `;
+
     updateCartCounter();
   });
 
@@ -39,6 +45,12 @@ function verwijderUitWinkelwagen(id) {
     localStorage.setItem("winkelwagen", JSON.stringify(winkelwagen));
     location.reload();
   }
+}
+
+function afrondenBestelling() {
+  alert("Bedankt voor je bestelling!");
+  localStorage.removeItem("winkelwagen");
+  location.reload();
 }
 
 function updateCartCounter() {
