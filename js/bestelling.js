@@ -48,9 +48,12 @@ function verwijderUitWinkelwagen(id) {
 }
 
 function afrondenBestelling() {
-  alert("Bedankt voor je bestelling!");
   localStorage.removeItem("winkelwagen");
-  location.reload();
+  const afronden = document.getElementById('afronden-container');
+  const container = document.getElementById('winkelwagen-container');
+  afronden.innerHTML = "";
+  container.innerHTML = "<p>Bedankt voor je bestelling!</p>";
+  updateCartCounter();
 }
 
 function updateCartCounter() {
