@@ -22,22 +22,27 @@ fetch('data/products.json')
       html += `
         <li>
           ${product.naam} - €${product.prijs} x ${aantal} = €${prijs.toFixed(2)}
-          <button onclick="verwijderUitWinkelwagen(${id})">Verwijder</button>
+          <button onclick="verlaagAantal(${id})">−</button>
+          <button onclick="verhoogAantal(${id})">+</button>
+          <button onclick="verwijderProduct(${id})">Verwijder</button>
         </li>
       `;
     });
     html += `</ul><p><strong>Totaal: €${totaal.toFixed(2)}</strong></p>`;
+    html += `<button onclick="afrondenBestelling()">Bestelling Afronden</button>`;
     container.innerHTML = html;
-
-    const afronden = document.getElementById('afronden-container');
-    afronden.innerHTML = `
-      <button onclick="afrondenBestelling()">Bestelling Afronden</button>
-    `;
 
     updateCartCounter();
   });
 
-function verwijderUitWinkelwagen(id) {
+function verhoogAantal(id) {
+  let winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
+  winkelwagen.push(id);
+  localStorage.setItem("winkelwagen", JSON.stringify(winkelwagen));
+  location.reload();
+}
+
+function verlaagAantal(id) {
   let winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
   const index = winkelwagen.indexOf(id);
   if (index !== -1) {
@@ -47,11 +52,16 @@ function verwijderUitWinkelwagen(id) {
   }
 }
 
+function verwijderProduct(id) {
+  let winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
+  winkelwagen = winkelwagen.filter(x => x !== id);
+  localStorage.setItem("winkelwagen", JSON.stringify(winkelwagen));
+  location.reload();
+}
+
 function afrondenBestelling() {
   localStorage.removeItem("winkelwagen");
-  const afronden = document.getElementById('afronden-container');
   const container = document.getElementById('winkelwagen-container');
-  afronden.innerHTML = "";
   container.innerHTML = "<p>Bedankt voor je bestelling!</p>";
   updateCartCounter();
 }
