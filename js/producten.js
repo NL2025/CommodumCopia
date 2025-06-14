@@ -17,4 +17,7 @@ fetch('data/products.json')
       lijst.appendChild(div);
     });
     updateCartCounter();
+  })
+  .catch(error => {
+    console.error('Fout bij het laden van producten:', error);
   });
