@@ -1,34 +1,31 @@
-const params = new URLSearchParams(window.location.search);
-const id = params.get('id');
+const urlParams = new URLSearchParams(window.location.search);
+const productId = parseInt(urlParams.get("id"));
 
-fetch('data/products.json')
+fetch("data/products.json")
   .then(response => response.json())
   .then(data => {
-    const product = data.find(p => p.product_id == id);
-    const container = document.getElementById('product-detail');
+    const product = data.find(p => p.product_id === productId);
+    if (!product) return;
 
-    if (product) {
-      container.innerHTML = `
-        <div class="product">
-          <img src="images/${product.afbeelding}" alt="${product.naam}">
-          <h3>${product.naam}</h3>
-          <p>${product.beschrijving}</p>
-          <strong>€ ${product.prijs}</strong><br>
-          <button onclick="addToCart(${product.product_id})">Voeg toe aan winkelwagen</button>
-        </div>
-      `;
-    } else {
-      container.innerHTML = "<p>Product niet gevonden.</p>";
-    }
-
-    updateCartCounter();
+    const section = document.getElementById("product-detail");
+    const div = document.createElement("div");
+    div.classList.add("product-detail");
+    div.innerHTML = `
+      <img src="images/${product.afbeelding}" alt="${product.naam}">
+      <h2>${product.naam}</h2>
+      <p>${product.beschrijving}</p>
+      <strong>€ ${product.prijs}</strong><br>
+      <button onclick="voegToeAanWinkelwagen(${product.product_id})">Toevoegen aan winkelwagen</button>
+    `;
+    section.appendChild(div);
   });
 
-function addToCart(id) {
+function voegToeAanWinkelwagen(id) {
   let winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
   winkelwagen.push(id);
   localStorage.setItem("winkelwagen", JSON.stringify(winkelwagen));
   updateCartCounter();
+  window.location.href = "bestelling.html";
 }
 
 function updateCartCounter() {
@@ -36,3 +33,5 @@ function updateCartCounter() {
   const counter = document.getElementById("winkelwagen-counter");
   if (counter) counter.innerText = winkelwagen.length;
 }
+
+updateCartCounter();
