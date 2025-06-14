@@ -33,4 +33,6 @@ data.forEach(categorie => {
   container.appendChild(div);
 });
 
-updateCartCounter();
+if (typeof updateCartCounter === "function") {
+  updateCartCounter();
+}
