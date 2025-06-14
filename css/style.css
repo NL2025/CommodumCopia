@@ -89,6 +89,7 @@ button {
   padding: 8px 16px;
   border-radius: 6px;
   cursor: pointer;
+  margin: 5px 4px 5px 0;
 }
 
 button:hover {
@@ -97,14 +98,12 @@ button:hover {
 
 #login-section {
   max-width: 400px;
-  margin: 50px auto 80px auto;
-  padding: 30px;
-  background-color: white;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   text-align: left;
-  position: relative;
-  top: 30px;
 }
 
 #login-section form label {
