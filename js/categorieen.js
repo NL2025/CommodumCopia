@@ -1,24 +1,9 @@
 const data = [
-  {
-    naam: "Appels",
-    afbeelding: "appels.jpg"
-  },
-  {
-    naam: "Brood",
-    afbeelding: "brood.jpg"
-  },
-  {
-    naam: "Melk",
-    afbeelding: "melk.jpg"
-  },
-  {
-    naam: "Kaas",
-    afbeelding: "kaas.jpg"
-  },
-  {
-    naam: "Vlees",
-    afbeelding: "vlees.jpg"
-  }
+  { naam: "Appels", afbeelding: "appels.jpg" },
+  { naam: "Brood", afbeelding: "brood.jpg" },
+  { naam: "Melk", afbeelding: "melk.jpg" },
+  { naam: "Kaas", afbeelding: "kaas.jpg" },
+  { naam: "Vlees", afbeelding: "vlees.jpg" }
 ];
 
 const container = document.getElementById("categorie-container");
@@ -33,6 +18,4 @@ data.forEach(categorie => {
   container.appendChild(div);
 });
 
-if (typeof updateCartCounter === "function") {
-  updateCartCounter();
-}
+updateCartCounter();
