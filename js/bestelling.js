@@ -22,27 +22,24 @@ fetch('data/products.json')
       html += `
         <li>
           ${product.naam} - €${product.prijs} x ${aantal} = €${prijs.toFixed(2)}
-          <button onclick="verlaagAantal(${id})">−</button>
-          <button onclick="verhoogAantal(${id})">+</button>
-          <button onclick="verwijderProduct(${id})">Verwijder</button>
+          <button onclick="aantalVerlagen(${id})">-</button>
+          <button onclick="aantalVerhogen(${id})">+</button>
+          <button onclick="verwijderUitWinkelwagen(${id})">Verwijder</button>
         </li>
       `;
     });
     html += `</ul><p><strong>Totaal: €${totaal.toFixed(2)}</strong></p>`;
-    html += `<button onclick="afrondenBestelling()">Bestelling Afronden</button>`;
     container.innerHTML = html;
+
+    const afronden = document.getElementById('afronden-container');
+    afronden.innerHTML = `
+      <button onclick="afrondenBestelling()">Bestelling Afronden</button>
+    `;
 
     updateCartCounter();
   });
 
-function verhoogAantal(id) {
-  let winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
-  winkelwagen.push(id);
-  localStorage.setItem("winkelwagen", JSON.stringify(winkelwagen));
-  location.reload();
-}
-
-function verlaagAantal(id) {
+function aantalVerlagen(id) {
   let winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
   const index = winkelwagen.indexOf(id);
   if (index !== -1) {
@@ -52,18 +49,23 @@ function verlaagAantal(id) {
   }
 }
 
-function verwijderProduct(id) {
+function aantalVerhogen(id) {
   let winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
-  winkelwagen = winkelwagen.filter(x => x !== id);
+  winkelwagen.push(id);
+  localStorage.setItem("winkelwagen", JSON.stringify(winkelwagen));
+  location.reload();
+}
+
+function verwijderUitWinkelwagen(id) {
+  let winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
+  winkelwagen = winkelwagen.filter(item => item !== id);
   localStorage.setItem("winkelwagen", JSON.stringify(winkelwagen));
   location.reload();
 }
 
 function afrondenBestelling() {
   localStorage.removeItem("winkelwagen");
-  const container = document.getElementById('winkelwagen-container');
-  container.innerHTML = "<p>Bedankt voor je bestelling!</p>";
-  updateCartCounter();
+  location.reload();
 }
 
 function updateCartCounter() {
