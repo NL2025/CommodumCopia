@@ -12,6 +12,28 @@
     "prijs": "1.89",
     "beschrijving": "Gezond en voedzaam brood",
     "afbeelding": "brood.jpg"
+  },
+  {
+    "product_id": 3,
+    "naam": "Verse Melk",
+    "prijs": "1.49",
+    "beschrijving": "1 liter halfvolle melk",
+    "afbeelding": "melk.jpg"
+  },
+  {
+    "product_id": 4,
+    "naam": "Hollandse Kaas",
+    "prijs": "3.79",
+    "beschrijving": "Plakken jonge kaas",
+    "afbeelding": "kaas.jpg"
+  },
+  {
+    "product_id": 5,
+    "naam": "Rundergehakt",
+    "prijs": "4.99",
+    "beschrijving": "500g vers rundergehakt",
+    "afbeelding": "vlees.jpg"
   }
 ]
+
  
