@@ -1,11 +1,14 @@
-# Commodum Copia
+# Commodum Copia - Webwinkelproject
 
-Dit project is een eenvoudige webwinkel gebouwd met HTML, CSS en JavaScript. Het bevat functionaliteiten zoals:
+## Beschrijving
+Commodum Copia is een eenvoudige webwinkel waar gebruikers producten kunnen bekijken, toevoegen aan hun winkelwagen en bestellingen kunnen afronden. Inloggen en uitloggen is ook mogelijk.
 
-- Productoverzicht
-- Categorieënweergave
-- Winkelwagen met besteloverzicht
-- Inloggen en uitloggen met lokale opslag
-- Dynamische productdetails
+## Pagina's
+- `index.html`
+- `categorieen.html`
+- `producten.html`
+- `product.html`
+- `bestelling.html`
+- `inloggen.html`
 
-## Bestandenstructuur
+## Mappenstructuur
