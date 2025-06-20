@@ -170,3 +170,8 @@ button:hover {
   display: block;
   margin: 20px auto;
 }
+
+#product-detail {
+  text-align: center;
+  padding: 20px;
+}
