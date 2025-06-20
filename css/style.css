@@ -146,8 +146,8 @@ button:hover {
 
 .categorie img {
   width: 100%;
-  max-width: 210px;
-  height: 145px;
+  max-width: 200px;
+  height: 135px;
   object-fit: contain;
   display: block;
   margin: 0 auto;
