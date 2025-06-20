@@ -135,27 +135,31 @@ button:hover {
 }
 
 .categorie {
-  width: 220px;
+  width: 160px;
   text-align: center;
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.categorie:hover {
+  transform: scale(1.03);
 }
 
 .categorie img {
   width: 100%;
-  max-width: 150px;
-  height: 115px;
+  height: 95px;
   object-fit: contain;
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 10px;
   border-radius: 4px;
 }
 
 .categorie h3 {
-  margin-top: 10px;
-  font-size: 18px;
+  margin: 0;
+  font-size: 16px;
   color: #333;
 }
