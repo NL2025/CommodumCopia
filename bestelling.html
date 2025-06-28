@@ -28,6 +28,13 @@
     <p>&copy; 2025 Commodum Copia</p>
   </footer>
 
+  <script>
+  if (!localStorage.getItem("gebruiker")) {
+    alert("Je moet eerst inloggen om je bestelling te bekijken.");
+    window.location.href = "inloggen.html";
+  }
+    
+</script>
   <script src="js/bestelling.js"></script>
   <script src="js/login.js"></script>
 </body>
