@@ -37,6 +37,7 @@ CommodumCopia/
     ├── rundergehakt.jpg
     └── vlees.jpg
 
+
 ## Pagina’s
 
 | Pagina               | Beschrijving                                                       |
